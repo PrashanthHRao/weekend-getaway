@@ -166,3 +166,9 @@
 - **Key Decisions:** Sligo video replaced with YouTube link (user wants app, not embed). `p10KQeLmzYw` kept as-is pending user giving correct kayaking video.
 - **Blocked:** Sligo kayak video source — `p10KQeLmzYw` is Lough Gill boat tour, not kayaking.
 - **Next Steps:** Test if `dirflg=d` shows route lines. Find correct Sligo kayak video.
+
+### 2026-05-27 — Session 18
+- **Goal:** Fix Plan 2 map route lines (Slieve League not drivable), create 4th "Best of All" plan with 2 maps
+- **Progress:** Fixed Plan 2 map: replaced `Carrick` (resolved to Carrick-on-Shannon) with `Killybegs`. Created Plan 4 tab, carousel card, and full itinerary combining Plan 2 route (Sligo/Donegal) + Downpatrick Head + Achill Island + Keem Bay. Plan 4 has two maps (Day 1: Dublin→Strandhill→Benbulben→Sligo; Day 2: Sligo→Donegal→Killybegs→Downpatrick Head→Achill→Keem Bay).
+- **Key Decisions:** Carrick-on-Shannon was wrong location; Killybegs is the correct nearest town to Slieve League. Best of All plan has long Day 2 (~22:00 return) but maximizes highlights.
+- **Next Steps:** Verify Plan 4 renders correctly. Push to git.
