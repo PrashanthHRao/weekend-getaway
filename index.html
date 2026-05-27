@@ -86,11 +86,15 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .act-imgs{display:flex;gap:4px;overflow-x:auto;touch-action:pan-x;overscroll-behavior-x:contain;will-change:scroll-position;margin-top:3px;padding-bottom:2px;width:100%}
 .act-imgs img{flex:0 0 auto;width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:zoom-in}
 @media(max-width:600px){.act-imgs img{width:100px;height:70px}}
+.act-video{position:relative;width:100%;padding-bottom:56.25%;margin:4px 0 2px;border-radius:8px;overflow:hidden;background:#000}
+.act-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 .act-badge,.act-link{display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:10px;font-size:.68rem;font-weight:500;white-space:nowrap;line-height:1.6;text-decoration:none}
 .stop-acts>.act-badge,.act-row{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border-left:3px solid;padding:3px 8px;border-radius:0 4px 4px 0;margin:0}
 .act-row>.act-badge{flex:1;border-left:none;padding:1px 4px}
 .act-book{display:inline-flex;align-items:center;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;border:1px solid;border-radius:6px;padding:2px 10px;text-decoration:none;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.5;color:inherit}
 a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
+.yt-link{display:inline-flex;align-items:center;font-size:.6rem;font-weight:700;border-radius:6px;padding:2px 10px;text-decoration:none;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.5;color:#fff;background:#c00;border:1px solid #c00;letter-spacing:.3px}
+.yt-link:hover{background:#8b0000;border-color:#8b0000}
 .act-baby{background:#ecfdf5;color:#065f46}
 .act-couple{background:#eff6ff;color:#1e40af}
 .must-see{display:inline-block;background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:600;padding:.1rem .4rem;border-radius:20px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em;line-height:1.4}
@@ -257,7 +261,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 
 <div class="map-section">
 <div class="map-h">&#128205; Dublin &rarr; Cong &rarr; Kylemore &rarr; Clifden &rarr; Westport &rarr; Dublin</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Cong+to:Kylemore+to:Clifden+to:Westport&output=embed" allowfullscreen></iframe>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Cong+to:Kylemore+to:Clifden+to:Westport&dirflg=d&output=embed" allowfullscreen></iframe>
 <a class="map-link" href="https://www.google.com/maps/dir/Dublin/Cong/Kylemore/Clifden/Westport" target="_blank">Open in Google Maps</a>
 </div>
 
@@ -309,7 +313,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <div class="stop-time">11:00</div><div class="stop-icon">&#127796;</div>
 <div class="stop-detail"><div class="stop-name">Killary Harbour &amp; Keem Bay <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Ireland's only fjord. Viewpoint stop. Keem Bay &mdash; stunning Blue Flag beach.</div><div class="stop-drive">15 min to Killary</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/33856353/pexels-photo-33856353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Killary Fjord" loading="lazy"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://live.staticflickr.com/65535/54399709244_24688e9e2a_b.jpg" alt="Killary Fjord" loading="lazy"><img src="https://live.staticflickr.com/65535/51036104342_1c6ed21493_b.jpg" alt="Keem Bay" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Killary Fjord viewpoint at Leenaun lookout</span><div class="act-row"><span class="act-badge act-couple">👫 Killary Fjord 1hr boat cruise</span><a class="act-book" href="https://killaryfjord.ie/" target="_blank">Book</a></div><div class="act-imgs"><img src="https://live.staticflickr.com/7031/6764826871_8402b77e85_b.jpg" alt="Killary Fjord cruise" loading="lazy"></div></div></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Killary Fjord viewpoint at Leenaun lookout</span><div class="act-row"><span class="act-badge act-couple">👫 Killary Fjord 1hr boat cruise</span><a class="yt-link" href="https://www.youtube.com/watch?v=tWQcsJ2FAj0" target="_blank" rel="noopener">▶ Watch</a><a class="act-book" href="https://killaryfjord.ie/" target="_blank">Book</a></div><div class="act-imgs"><img src="https://live.staticflickr.com/7031/6764826871_8402b77e85_b.jpg" alt="Killary Fjord cruise" loading="lazy"></div></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
@@ -364,8 +368,8 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 
 <div class="map-section">
 <div class="map-h">&#128205; Dublin &rarr; Strandhill &rarr; Benbulben &rarr; Sligo &rarr; Donegal &rarr; Slieve League &rarr; Dublin</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+to:Sligo+to:Donegal+to:Slieve+League&output=embed" allowfullscreen></iframe>
-<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben/Sligo/Donegal/Slieve+League" target="_blank">Open in Google Maps</a>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+to:Sligo+to:Donegal+Town+to:Slieve+League+Cliffs&dirflg=d&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben/Sligo/Donegal+Town/Slieve+League+Cliffs" target="_blank">Open in Google Maps</a>
 </div>
 
 <div class="day day1">
@@ -378,7 +382,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <div class="stop-time">09:30</div><div class="stop-icon">&#9973;</div>
 <div class="stop-detail"><div class="stop-name">Strandhill Beach</div><div class="stop-desc">Surf beach with dunes. Sea air, rock pools, great coffee at Strandhill Market Kitchen. Pram-friendly promenade.</div><div class="stop-drive">5 min off N4</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"><img src="https://live.staticflickr.com/65535/54660464313_e71a8072f3_b.jpg" alt="Strandhill beach" loading="lazy"><img src="https://live.staticflickr.com/65535/54010868461_65c06399ea_b.jpg" alt="Strandhill surfing" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Strandhill promenade to the dunes</span><span class="act-badge act-baby">👶 1hr surf lesson — all gear provided</span><div class="act-row"><span class="act-badge act-couple">👫 Sligo Bay guided kayak tour</span><a class="act-book" href="https://sligokayaktours.com/" target="_blank">Book</a></div><div class="act-imgs"><img src="https://live.staticflickr.com/3228/3022724144_828e6252de_b.jpg" alt="Strandhill beach walk" loading="lazy"></div></div></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Strandhill promenade to the dunes</span><span class="act-badge act-baby">👶 1hr surf lesson — all gear provided</span><div class="act-row"><span class="act-badge act-couple">👫 Sligo Bay guided kayak tour</span><a class="yt-link" href="https://www.youtube.com/watch?v=p10KQeLmzYw" target="_blank" rel="noopener">▶ Watch</a><a class="act-book" href="https://sligokayaktours.com/" target="_blank">Book</a></div><div class="act-imgs"><img src="https://live.staticflickr.com/3228/3022724144_828e6252de_b.jpg" alt="Strandhill beach walk" loading="lazy"></div></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">11:00</div><div class="stop-icon">&#127759;</div>
@@ -477,7 +481,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 
 <div class="map-section">
 <div class="map-h">&#128205; Dublin &rarr; Ballina &rarr; Ceide Fields &rarr; Downpatrick Head &rarr; Achill Island &rarr; Keem Bay &rarr; Dublin</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Ballina+to:Ceide+Fields+to:Downpatrick+Head+to:Achill+Island+to:Keem+Bay&output=embed" allowfullscreen></iframe>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Ballina+to:Ceide+Fields+to:Downpatrick+Head+to:Achill+Island+to:Keem+Bay&dirflg=d&output=embed" allowfullscreen></iframe>
 <a class="map-link" href="https://www.google.com/maps/dir/Dublin/Ballina/Ceide+Fields/Downpatrick+Head/Achill+Island/Keem+Bay" target="_blank">Open in Google Maps</a>
 </div>
 
@@ -527,7 +531,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <div class="stop-time">10:00</div><div class="stop-icon">&#127796;</div>
 <div class="stop-detail"><div class="stop-name">Keem Bay <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. One of Ireland's most beautiful beaches. Paddle on calm days.</div><div class="stop-drive">20 min from cottage</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy"><img src="https://live.staticflickr.com/65535/51036104342_1c6ed21493_b.jpg" alt="Keem Bay" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Keem Bay shoreline walk from car park</span><div class="act-row"><span class="act-badge act-couple">👫 Kayaking &amp; SUP — gear rental on beach</span><a class="act-book" href="https://achillsurf.com/sea-kayaking/" target="_blank">Book</a></div></div></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Keem Bay shoreline walk from car park</span><div class="act-row"><span class="act-badge act-couple">👫 Kayaking &amp; SUP — gear rental on beach</span><a class="yt-link" href="https://www.youtube.com/watch?v=tUsouQeZy5c" target="_blank" rel="noopener">▶ Watch</a><a class="act-book" href="https://achillsurf.com/sea-kayaking/" target="_blank">Book</a></div></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:00</div><div class="stop-icon">&#128247;</div>

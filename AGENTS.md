@@ -159,3 +159,10 @@
 - **Progress:** Added `.stop-acts` card styling (green-tinted background `#f0faf5`, green border `#bbf7d0`, border-radius 8px, padding). Added `.acts-heading` "🎯 Activities" label. Swapped order: `.stop-imgs` before `.stop-acts` in all 10 stops. Changed layout from horizontal badges to vertical stack with colored left accent bar. Added `.act-row` + `.act-book` button for 5 bookable activities (Killary cruise, Strandhill surf, Sligo Abbey, Donegal Castle, Keem Bay kayaking with `achillsurf.com` link). Fixed `min-width:0` to prevent flex overflow. Book buttons styled as uppercase bordered pills with hover fill effect.
 - **Key Decisions:** Bookable activities get a dedicated "Book" button (bordered pill, hover fill) rather than styling the activity text as a link. Free activities remain as accent-bar text badges without book buttons.
 - **Next Steps:** Deploy to GitHub Pages.
+
+### 2026-05-27 — Session 17
+- **Goal:** Fix Google Maps embeds to show route lines (add `dirflg=d`), fix YouTube Error 153 on all 3 video embeds, replace Sligo embedded video with YouTube app link
+- **Progress:** Added `&dirflg=d` to all 3 map embed URLs for driving mode. Fixed all 3 video iframes: removed `loading="lazy"`, changed params to `?feature=oembed`, added `referrerpolicy="strict-origin-when-cross-origin"`, added `web-share` to allow list. Replaced Sligo embedded video (`p10KQeLmzYw`) with `.yt-link` anchor opening YouTube in app. Added `.yt-link` CSS (red button).
+- **Key Decisions:** Sligo video replaced with YouTube link (user wants app, not embed). `p10KQeLmzYw` kept as-is pending user giving correct kayaking video.
+- **Blocked:** Sligo kayak video source — `p10KQeLmzYw` is Lough Gill boat tour, not kayaking.
+- **Next Steps:** Test if `dirflg=d` shows route lines. Find correct Sligo kayak video.
