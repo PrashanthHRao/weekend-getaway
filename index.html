@@ -77,11 +77,11 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .stop:last-child{border-bottom:none}
 .stop-time{min-width:52px;font-weight:600;font-size:.82rem;color:#6b7280;padding-top:2px;flex-shrink:0}
 .stop-icon{font-size:1rem;min-width:22px;text-align:center;padding-top:3px;flex-shrink:0}
-.stop-detail{flex:1}
+.stop-detail{flex:1;min-width:0}
 .stop-name{font-weight:600;font-size:.92rem;color:#111827}
 .stop-desc{font-size:.8rem;color:#6b7280;margin-top:2px;line-height:1.45}
 .stop-drive{font-size:.72rem;color:#9ca3af;margin-top:2px;font-style:italic}
-.stop-acts{display:flex;flex-direction:column;gap:2px;background:#f0faf5;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px 8px;margin-top:6px}
+.stop-acts{display:flex;flex-direction:column;gap:2px;min-width:0;background:#f0faf5;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px 8px;margin-top:6px}
 .acts-heading{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#16a34a;width:100%;margin-bottom:2px}
 .act-imgs{display:flex;gap:4px;overflow-x:auto;margin-top:3px;padding-bottom:2px;width:100%}
 .act-imgs img{flex:0 0 auto;width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:zoom-in}
@@ -94,7 +94,7 @@ a.act-book:hover{background:currentColor;color:#fff}
 .act-baby{background:#ecfdf5;color:#065f46}
 .act-couple{background:#eff6ff;color:#1e40af}
 .must-see{display:inline-block;background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:600;padding:.1rem .4rem;border-radius:20px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em;line-height:1.4}
-.stop-imgs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:8px;padding-bottom:4px;cursor:default}
+.stop-imgs{display:flex;gap:8px;min-width:0;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:8px;padding-bottom:4px;cursor:default}
 .stop-imgs img{flex:0 0 auto;width:200px;height:140px;object-fit:cover;border-radius:10px;cursor:zoom-in;scroll-snap-align:start;transition:transform .3s ease,box-shadow .3s ease}
 .stop-imgs img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.12)}
 @media(max-width:600px){.stop-imgs img{width:160px;height:120px}}
