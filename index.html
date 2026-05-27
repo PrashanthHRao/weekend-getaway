@@ -83,7 +83,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .stop-drive{font-size:.72rem;color:#9ca3af;margin-top:2px;font-style:italic}
 .stop-acts{display:flex;flex-direction:column;gap:2px;min-width:0;background:#f0faf5;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px 8px;margin:6px 8px 0}
 .acts-heading{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#16a34a;width:100%;margin-bottom:2px}
-.act-imgs{display:flex;gap:4px;overflow-x:auto;margin-top:3px;padding-bottom:2px;width:100%}
+.act-imgs{display:flex;gap:4px;overflow-x:auto;touch-action:pan-x;overscroll-behavior-x:contain;will-change:scroll-position;margin-top:3px;padding-bottom:2px;width:100%}
 .act-imgs img{flex:0 0 auto;width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:zoom-in}
 @media(max-width:600px){.act-imgs img{width:100px;height:70px}}
 .act-badge,.act-link{display:inline-flex;align-items:center;gap:3px;padding:1px 7px;border-radius:10px;font-size:.68rem;font-weight:500;white-space:nowrap;line-height:1.6;text-decoration:none}
@@ -94,7 +94,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .act-baby{background:#ecfdf5;color:#065f46}
 .act-couple{background:#eff6ff;color:#1e40af}
 .must-see{display:inline-block;background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:600;padding:.1rem .4rem;border-radius:20px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em;line-height:1.4}
-.stop-imgs{display:flex;gap:8px;min-width:0;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:8px;padding-bottom:4px;cursor:default}
+.stop-imgs{display:flex;gap:8px;min-width:0;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;will-change:scroll-position;margin-top:8px;padding-bottom:4px;cursor:default}
 .stop-imgs img{flex:0 0 auto;width:200px;height:140px;object-fit:cover;border-radius:10px;cursor:zoom-in;scroll-snap-align:start;transition:transform .3s ease,box-shadow .3s ease}
 .stop-imgs img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.12)}
 @media(max-width:600px){.stop-imgs img{width:160px;height:120px}}
