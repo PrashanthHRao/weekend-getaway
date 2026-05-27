@@ -134,3 +134,16 @@
 - **Progress:** Found `Donegal-Castle.jpg` (exterior view) on Heritage Ireland CDN — replaces generic `Donegal coast` (1649273). Found more HI images: `Carrowmore-2.jpg`, `Carrowmore-3.jpg`, `Carrowmore-Snow.jpg`, `Sligo-Abbey-2.jpg`. Identified unused Pexels 5765122 (Achill cliffs) and 35036863 (Achill beach) as suitable additions for Achill Coastal Drive. Pexels search/pages all 403, web search rate-limited (429), Google Images returns obfuscated JS — cannot find Sky Road viewpoint, Dogs Bay beach, Westport Octagon, or Cong Abbey replacement images.
 - **Key Decisions:** None yet — blocked on image sources for non-OPW sites.
 - **Next Steps:** Await user input on how to source images for Clifden (Sky Road, Dogs Bay), Westport Town Walk, and other non-OPW stops; or proceed with partial fixes (Donegal Castle replacement, Achill additions) and deploy.
+
+### 2026-05-27 — Session 14
+- **Goal:** Add location-specific walking path images as activity images; update activity descriptions with exact route names; replace Strandhill surf lessons with dune walk
+- **Progress:** Added `.act-imgs` CSS (120×80px thumbnails, horizontal scroll, 8px radius). Updated lightbox JS to include `.act-imgs img`. Updated all 10 stops with activity-specific route descriptions and images:
+  - Cong: Ashford Castle woodland walk image (Flickr 3303553544)
+  - Westport: Carrowbeg River walking path (Flickr 53779363954) + bridge (50190238032)
+  - Sligo: Garavogue River footbridge (Flickr 52397164472) + swans (52398621348)
+  - Killary: Fjord cruise boat image (Flickr 6764826871)
+  - Strandhill: Beach walk path (Flickr 3022724144)
+  - Achill: Minaun Cliffs (Flickr 52459299515) + hikers (2525576722)
+  - Sky Road, Donegal, Slieve League, Keem Bay: route-specific descriptions updated
+- **Key Decisions:** Surf lessons kept (fun paid activity fits user's preference). Activity images sourced via Flickr Feed API (no API key, no rate limit). Each activity badge now names exact path/route (e.g., "Carrowbeg River walk via North Mall").
+- **Next Steps:** Deploy to GitHub Pages.
