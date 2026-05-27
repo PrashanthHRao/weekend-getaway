@@ -104,5 +104,10 @@
 
 ### 2026-05-27 — Session 8
 - **Goal:** Fix plan title/subtitle hidden behind sticky tabs when switching plans; add up arrows for scrolling back up through carousel
-- **Progress:** Added `scroll-margin-top:3.5rem` to `.container` so plan content clears the sticky tab bar on scroll. Added `.carousel-arrow-up` buttons to each carousel card: card 0 scrolls to hero, cards 1-2 scroll to previous card. Down arrows unchanged.
-- **Key Decisions:** Keep same glassmorphism style as down arrows, no float animation on up arrows. Mobile sizing matches down arrows.
+- **Progress:** Added `scroll-margin-top:3.5rem` to `.container` so plan content clears the sticky tab bar on scroll. Added `.carousel-arrow-up` buttons to each carousel card: card 0 scrolls to hero, cards 1-2 scroll to previous card. Added upward float animation to up arrows. Dropped `env(safe-area-inset-bottom)` for fixed rem values (`top:4rem` desktop, `top:3.5rem` mobile) to clear notch.
+- **Key Decisions:** Up arrows get upward float animation matching down arrows. Fixed top values for notch clearance.
+
+### 2026-05-27 — Session 9
+- **Goal:** Enable left/right image navigation in lightbox via swipe, arrow buttons, and keyboard
+- **Progress:** Added `<` `>` nav buttons, swipe detection (50px threshold), counter "N / M", and ←/→ keyboard nav. Added `touch-action:none` to lightbox overlay to prevent page scroll-through. Lightbox images deduplicated into gallery array for circular navigation.
+- **Key Decisions:** Touch swipe uses `{passive:true}` with `touch-action:none` CSS — no `preventDefault()` needed. Gallery dedupes identical image URLs.
