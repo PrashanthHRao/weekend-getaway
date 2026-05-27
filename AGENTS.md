@@ -153,3 +153,9 @@
 - **Progress:** Swapped `.stop-acts` after `.stop-imgs` in all 10 stops. Added card styling to `.stop-acts` (green-tinted background `#f0faf5`, green border `#bbf7d0`, border-radius 8px, padding). Added "🎯 Activities" heading (`.acts-heading` — uppercase, green `#16a34a`, full-width) inside each stop-acts.
 - **Key Decisions:** `.stop-acts` changed from simple flex row to card with heading for visual prominence. Green theme matches the activity/nature vibe.
 - **Next Steps:** Deploy to GitHub Pages.
+
+### 2026-05-27 — Session 16
+- **Goal:** Make activity card visually prominent with colored card background and "🎯 Activities" heading; ensure activities don't overflow; add visible "Book" buttons for bookable activities.
+- **Progress:** Added `.stop-acts` card styling (green-tinted background `#f0faf5`, green border `#bbf7d0`, border-radius 8px, padding). Added `.acts-heading` "🎯 Activities" label. Swapped order: `.stop-imgs` before `.stop-acts` in all 10 stops. Changed layout from horizontal badges to vertical stack with colored left accent bar. Added `.act-row` + `.act-book` button for 5 bookable activities (Killary cruise, Strandhill surf, Sligo Abbey, Donegal Castle, Keem Bay kayaking with `achillsurf.com` link). Fixed `min-width:0` to prevent flex overflow. Book buttons styled as uppercase bordered pills with hover fill effect.
+- **Key Decisions:** Bookable activities get a dedicated "Book" button (bordered pill, hover fill) rather than styling the activity text as a link. Free activities remain as accent-bar text badges without book buttons.
+- **Next Steps:** Deploy to GitHub Pages.
