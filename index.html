@@ -37,8 +37,9 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .carousel-card .highlights li::before{content:"\2713";margin-right:.5rem;color:#7dd3c0}
 .carousel-card .cta{display:inline-block;padding:.7rem 1.8rem;background:#fff;color:#0f4c5c;border-radius:30px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
 .carousel-card .cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
-.carousel-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.6);font-size:1.5rem;animation:bounce 2s infinite;cursor:pointer;background:none;border:none}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.carousel-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;background:rgba(255,255,255,.15);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.2rem;width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:floatArrow 2.5s ease-in-out infinite;transition:background .3s,transform .3s}
+.carousel-arrow:hover{background:rgba(255,255,255,.25);transform:translateX(-50%) scale(1.1)}
+@keyframes floatArrow{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
 .carousel-count{position:absolute;top:1.5rem;right:1.5rem;z-index:2;background:rgba(0,0,0,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;padding:.3rem .7rem;border-radius:20px}
 
 /* Tabs */
@@ -107,7 +108,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .carousel-card .content{padding:1.2rem}
 .carousel-card .badge{font-size:.7rem}
 .carousel-count{font-size:.7rem;top:1rem;right:1rem}
-.carousel-arrow{font-size:1.2rem;bottom:1.2rem}
+.carousel-arrow{width:38px;height:38px;font-size:1rem;bottom:1.2rem}
 .hero{min-height:400px}
 }
 </style>
@@ -129,6 +130,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <span class="hero-dot"></span>
 <span class="hero-dot"></span>
 </div>
+<button class="carousel-arrow" onclick="document.querySelector('.carousel-card').scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
 <!-- ===== VERTICAL PLAN CAROUSEL ===== -->
@@ -182,6 +184,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <button class="cta" onclick="showPlan(2)">View Plan &rarr;</button>
 </div>
 <span class="carousel-count">3 / 3</span>
+<button class="carousel-arrow" onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
 </div>
