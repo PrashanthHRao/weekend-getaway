@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ireland Weekend Trip Plans</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,7 +12,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans
 /* Hero slideshow */
 html{scroll-behavior:smooth}
 body{scroll-snap-type:y proximity;overflow-y:scroll}
-.hero{position:relative;height:100vh;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+.hero{position:relative;height:100vh;height:100dvh;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
 .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
 .hero-slide.active{opacity:1}
 .hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,70,.7) 0%,rgba(26,122,110,.4) 100%)}
@@ -20,19 +20,19 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .hero-content h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
 .hero .sub{font-size:clamp(.9rem,2vw,1.15rem);opacity:.95;margin-bottom:.3rem}
 .hero .meta{font-size:.85rem;opacity:.8;margin-top:.8rem}
-.hero-dots{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:2}
+.hero-dots{position:absolute;bottom:4rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:2}
 .hero-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s}
 .hero-dot.active{background:#fff;transform:scale(1.2)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* Plan carousel */
-.carousel-card{position:relative;min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
+.carousel-card{position:relative;min-height:100vh;min-height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
 .cc-slides{position:absolute;inset:0}
 .cc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
 .cc-slide.active{opacity:1}
 .cc-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,46,.7) 0%,rgba(15,79,92,.55) 50%,rgba(0,0,0,.25) 100%)}
-.cc-place{position:absolute;bottom:1rem;right:1rem;z-index:3;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#fff;font-size:.72rem;padding:.25rem .55rem;border-radius:20px;display:flex;align-items:center;gap:.2rem;pointer-events:none;border:1px solid rgba(255,255,255,.1)}
-.cc-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:.4rem}
+.cc-place{position:absolute;bottom:2.5rem;right:1rem;z-index:3;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#fff;font-size:.72rem;padding:.25rem .55rem;border-radius:20px;display:flex;align-items:center;gap:.2rem;pointer-events:none;border:1px solid rgba(255,255,255,.1)}
+.cc-dots{position:absolute;bottom:5rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:.4rem}
 .cc-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,transform .3s;cursor:pointer}
 .cc-dots span.active{background:#fff;transform:scale(1.3)}
 .carousel-card .content{position:relative;z-index:2;max-width:520px;padding:2rem;text-align:center}
@@ -43,8 +43,10 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .carousel-card .highlights li::before{content:"\2713";margin-right:.5rem;color:#7dd3c0}
 .carousel-card .cta{display:inline-block;padding:.7rem 1.8rem;background:#fff;color:#0f4c5c;border-radius:30px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
 .carousel-card .cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
-.carousel-arrow{position:absolute;bottom:6rem;left:50%;transform:translateX(-50%);z-index:4;background:rgba(255,255,255,.15);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.2rem;width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:floatArrow 2.5s ease-in-out infinite;transition:background .3s,transform .3s}
+.carousel-arrow{position:absolute;bottom:9.5rem;left:50%;transform:translateX(-50%);z-index:4;background:rgba(255,255,255,.15);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.2rem;width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:floatArrow 2.5s ease-in-out infinite;transition:background .3s,transform .3s}
 .carousel-arrow:hover{background:rgba(255,255,255,.25);transform:translateX(-50%) scale(1.1)}
+.carousel-arrow-up{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);z-index:4;background:rgba(255,255,255,.15);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.2rem;width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,transform .3s}
+.carousel-arrow-up:hover{background:rgba(255,255,255,.25);transform:translateX(-50%) scale(1.1)}
 @keyframes floatArrow{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
 .carousel-count{position:absolute;top:1.5rem;right:1.5rem;z-index:2;background:rgba(0,0,0,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;padding:.3rem .7rem;border-radius:20px}
 
@@ -57,7 +59,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .tab.active{color:#0f4c5c;border-bottom-color:#2a9d8f;background:#f0fdfa}
 
 /* Plan container */
-.container{max-width:900px;margin:0 auto;padding:1.2rem}
+.container{max-width:900px;margin:0 auto;padding:1.2rem;scroll-margin-top:3.5rem}
 .plan{display:none;animation:fadeIn .3s ease}
 .plan.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -114,8 +116,10 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .carousel-card .content{padding:1.2rem}
 .carousel-card .badge{font-size:.7rem}
 .carousel-count{font-size:.7rem;top:1rem;right:1rem}
-.carousel-arrow{width:38px;height:38px;font-size:1rem;bottom:5rem}
-.cc-dots{bottom:2rem}
+.carousel-arrow,.carousel-arrow-up{width:38px;height:38px;font-size:1rem}
+.carousel-arrow{bottom:8.5rem}
+.carousel-arrow-up{top:1rem}
+.cc-dots{bottom:4.5rem}
 .cc-dots span{width:6px;height:6px}
 .hero{min-height:400px}
 }
@@ -163,6 +167,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <span class="carousel-count">1 / 3</span>
 <div class="cc-dots"><span class="active"></span><span></span><span></span></div>
+<button class="carousel-arrow-up" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">&#8593;</button>
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
@@ -185,6 +190,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <span class="carousel-count">2 / 3</span>
 <div class="cc-dots"><span class="active"></span><span></span><span></span></div>
+<button class="carousel-arrow-up" onclick="this.closest('.carousel-card').previousElementSibling.scrollIntoView({behavior:'smooth'})">&#8593;</button>
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
@@ -207,6 +213,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <span class="carousel-count">3 / 3</span>
 <div class="cc-dots"><span class="active"></span><span></span><span></span></div>
+<button class="carousel-arrow-up" onclick="this.closest('.carousel-card').previousElementSibling.scrollIntoView({behavior:'smooth'})">&#8593;</button>
 <button class="carousel-arrow" onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
@@ -553,7 +560,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 
 <script>
-function showPlan(i){document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===i));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})}
+function showPlan(i){document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===i));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.container').scrollIntoView({behavior:'smooth'})}
 document.querySelectorAll('.stop-img img').forEach(img=>{img.addEventListener('click',function(e){e.stopPropagation();openLightbox(this.src)})});
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}

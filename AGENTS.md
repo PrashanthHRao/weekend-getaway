@@ -91,3 +91,18 @@
 - Pexels researched: achill coast (29579005), keem bay (9772544, 13050819), achill island (29361156), achill cliffs (5765122), achill beach (35036863), downpatrick head (1686024, 12530564), ceide fields (10428434), mayo coast (1204996)
 - Accommodation found: Sound Cottage, Achill Island — sleeps 6, 3 beds, from €52/night
 - Rewrote trip-plan.html: removed 3 plans, added Achill plan, 420 lines total
+
+### 2026-05-27 — Session 6
+- **Goal:** Fix Node.js 20 deprecation warning in GitHub Actions deploy
+- **Progress:** Upgraded `actions/checkout@v4`→`v6`, `actions/configure-pages@v5`→`v6`, `actions/upload-pages-artifact@v3`→`v5`, `actions/deploy-pages@v4`→`v5`. These versions target Node 24 natively, eliminating the need for `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` env var (removed).
+- **Key Decisions:** Use latest action versions with native Node 24 support; drop workaround env var.
+
+### 2026-05-27 — Session 7
+- **Goal:** Fix labels, dots, and down arrow hidden behind Safari address bar on mobile
+- **Progress:** Changed `.hero` `height:100vh`→`100dvh`, `.carousel-card` `min-height:100vh`→`100dvh`. Dropped unreliable `env(safe-area-inset-bottom)` in favor of generous fixed `bottom` values (`4rem` dots, `2.5rem` place, `9.5rem` arrow desktop, `8.5rem/4.5rem` mobile). Added `viewport-fit=cover` meta tag.
+- **Key Decisions:** Ditch `env()` for generous fixed rems — more reliable across iOS versions, content is flexbox-centered so there's room.
+
+### 2026-05-27 — Session 8
+- **Goal:** Fix plan title/subtitle hidden behind sticky tabs when switching plans; add up arrows for scrolling back up through carousel
+- **Progress:** Added `scroll-margin-top:3.5rem` to `.container` so plan content clears the sticky tab bar on scroll. Added `.carousel-arrow-up` buttons to each carousel card: card 0 scrolls to hero, cards 1-2 scroll to previous card. Down arrows unchanged.
+- **Key Decisions:** Keep same glassmorphism style as down arrows, no float animation on up arrows. Mobile sizing matches down arrows.
