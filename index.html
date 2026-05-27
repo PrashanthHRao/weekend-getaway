@@ -27,8 +27,14 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 
 /* Plan carousel */
 .carousel-card{position:relative;min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
-.carousel-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.carousel-card .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,46,.7) 0%,rgba(15,79,92,.55) 50%,rgba(0,0,0,.25) 100%)}
+.cc-slides{position:absolute;inset:0}
+.cc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
+.cc-slide.active{opacity:1}
+.cc-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,46,.7) 0%,rgba(15,79,92,.55) 50%,rgba(0,0,0,.25) 100%)}
+.cc-place{position:absolute;bottom:1rem;right:1rem;z-index:3;background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#fff;font-size:.72rem;padding:.25rem .55rem;border-radius:20px;display:flex;align-items:center;gap:.2rem;pointer-events:none;border:1px solid rgba(255,255,255,.1)}
+.cc-dots{position:absolute;bottom:4.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:.4rem}
+.cc-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,transform .3s;cursor:pointer}
+.cc-dots span.active{background:#fff;transform:scale(1.3)}
 .carousel-card .content{position:relative;z-index:2;max-width:520px;padding:2rem;text-align:center}
 .carousel-card .badge{display:inline-block;background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;margin-bottom:1rem;border:1px solid rgba(255,255,255,.15)}
 .carousel-card h2{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem;text-shadow:0 2px 12px rgba(0,0,0,.3)}
@@ -109,6 +115,8 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .carousel-card .badge{font-size:.7rem}
 .carousel-count{font-size:.7rem;top:1rem;right:1rem}
 .carousel-arrow{width:38px;height:38px;font-size:1rem;bottom:4rem}
+.cc-dots{bottom:3.8rem}
+.cc-dots span{width:6px;height:6px}
 .hero{min-height:400px}
 }
 </style>
@@ -137,7 +145,11 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="carousel-section">
 
 <div class="carousel-card" data-plan="0">
-<div class="bg" style="background-image:url(https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="cc-slides">
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Connemara</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Kylemore Abbey</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/30283523/pexels-photo-30283523.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Clifden</span></div>
+</div>
 <div class="content">
 <span class="badge">Plan 1</span>
 <h2>Connemara &amp; Mayo</h2>
@@ -150,11 +162,16 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <button class="cta" onclick="showPlan(0)">View Plan &rarr;</button>
 </div>
 <span class="carousel-count">1 / 3</span>
+<div class="cc-dots"><span class="active"></span><span></span><span></span></div>
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
 <div class="carousel-card" data-plan="1">
-<div class="bg" style="background-image:url(https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="cc-slides">
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Strandhill</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Benbulben</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Slieve League</span></div>
+</div>
 <div class="content">
 <span class="badge">Plan 2</span>
 <h2>Sligo &amp; Donegal</h2>
@@ -167,11 +184,16 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <button class="cta" onclick="showPlan(1)">View Plan &rarr;</button>
 </div>
 <span class="carousel-count">2 / 3</span>
+<div class="cc-dots"><span class="active"></span><span></span><span></span></div>
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
 <div class="carousel-card" data-plan="2">
-<div class="bg" style="background-image:url(https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="cc-slides">
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Coast</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Keem Bay</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/5765122/pexels-photo-5765122.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Cliffs</span></div>
+</div>
 <div class="content">
 <span class="badge">Plan 3</span>
 <h2>Achill Island &amp; Mayo</h2>
@@ -184,6 +206,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <button class="cta" onclick="showPlan(2)">View Plan &rarr;</button>
 </div>
 <span class="carousel-count">3 / 3</span>
+<div class="cc-dots"><span class="active"></span><span></span><span></span></div>
 <button class="carousel-arrow" onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
@@ -539,6 +562,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbo
 let slideIdx=0;const hSlides=document.querySelectorAll('.hero-slide'),hDots=document.querySelectorAll('.hero-dot');
 function nextSlide(){hSlides.forEach(s=>s.classList.remove('active'));hDots.forEach(d=>d.classList.remove('active'));slideIdx=(slideIdx+1)%hSlides.length;hSlides[slideIdx].classList.add('active');hDots[slideIdx].classList.add('active')}
 if(hSlides.length>1)setInterval(nextSlide,4500);
+// Card slideshows
+document.querySelectorAll('.carousel-card').forEach(function(card){
+  var s=card.querySelectorAll('.cc-slide'),d=card.querySelectorAll('.cc-dots span');
+  if(s.length<2)return;var i=0;
+  setInterval(function(){
+    s.forEach(function(x){x.classList.remove('active')});d.forEach(function(x){x.classList.remove('active')});
+    i=(i+1)%s.length;s[i].classList.add('active');d[i].classList.add('active');
+  },5000);
+});
 </script>
 
 </body>
