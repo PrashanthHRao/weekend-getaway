@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ireland Weekend Trip Plans</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;color:#1f2937;line-height:1.5}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;src:url(https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fjQt4P1RTh3qRfDkP1lnC.woff2) format('woff2');font-display:swap}
+
+/* Hero slideshow */
+html{scroll-behavior:smooth}
+body{scroll-snap-type:y proximity;overflow-y:scroll}
+.hero{position:relative;height:100vh;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,70,.7) 0%,rgba(26,122,110,.4) 100%)}
+.hero-content{position:relative;z-index:2;padding:1.5rem;animation:fadeUp .8s ease .3s both}
+.hero-content h1{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:-.03em;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero .sub{font-size:clamp(.9rem,2vw,1.15rem);opacity:.95;margin-bottom:.3rem}
+.hero .meta{font-size:.85rem;opacity:.8;margin-top:.8rem}
+.hero-dots{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:2}
+.hero-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s}
+.hero-dot.active{background:#fff;transform:scale(1.2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Plan carousel */
+.carousel-card{position:relative;min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
+.carousel-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.carousel-card .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,59,46,.7) 0%,rgba(15,79,92,.55) 50%,rgba(0,0,0,.25) 100%)}
+.carousel-card .content{position:relative;z-index:2;max-width:520px;padding:2rem;text-align:center}
+.carousel-card .badge{display:inline-block;background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;font-weight:600;padding:.3rem .8rem;border-radius:20px;margin-bottom:1rem;border:1px solid rgba(255,255,255,.15)}
+.carousel-card h2{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.carousel-card .route{font-size:.9rem;opacity:.85;margin-bottom:.8rem}
+.carousel-card .highlights{list-style:none;font-size:.85rem;opacity:.9;margin-bottom:1.2rem;line-height:1.7;display:inline-block;text-align:left}
+.carousel-card .highlights li::before{content:"\2713";margin-right:.5rem;color:#7dd3c0}
+.carousel-card .cta{display:inline-block;padding:.7rem 1.8rem;background:#fff;color:#0f4c5c;border-radius:30px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer}
+.carousel-card .cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
+.carousel-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.6);font-size:1.5rem;animation:bounce 2s infinite;cursor:pointer;background:none;border:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.carousel-count{position:absolute;top:1.5rem;right:1.5rem;z-index:2;background:rgba(0,0,0,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;padding:.3rem .7rem;border-radius:20px}
+
+/* Tabs */
+.tabs{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:100}
+.tabs-inner{max-width:900px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:1;min-width:0;padding:1rem .5rem;text-align:center;cursor:pointer;font-weight:600;font-size:.82rem;color:#6b7280;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;white-space:nowrap}
+.tab:hover{color:#0f4c5c;background:#f0fdfa}
+.tab.active{color:#0f4c5c;border-bottom-color:#2a9d8f;background:#f0fdfa}
+
+/* Plan container */
+.container{max-width:900px;margin:0 auto;padding:1.2rem}
+.plan{display:none;animation:fadeIn .3s ease}
+.plan.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Day cards */
+.day{background:#fff;border-radius:16px;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);overflow:hidden;transition:box-shadow .2s}
+.day:hover{box-shadow:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04)}
+.day-header{padding:1rem 1.2rem;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:.6rem}
+.day1 .day-header{background:#ecfdf5;color:#065f46}
+.day2 .day-header{background:#eff6ff;color:#1e40af}
+.day-header span{font-size:1.2rem}
+.stop{display:flex;padding:.85rem 1.2rem;border-top:1px solid #f3f4f6;align-items:flex-start;gap:.8rem;transition:background .15s}
+.stop:hover{background:#fafafa}
+.stop:last-child{border-bottom:none}
+.stop-time{min-width:52px;font-weight:600;font-size:.82rem;color:#6b7280;padding-top:2px;flex-shrink:0}
+.stop-icon{font-size:1rem;min-width:22px;text-align:center;padding-top:3px;flex-shrink:0}
+.stop-detail{flex:1}
+.stop-name{font-weight:600;font-size:.92rem;color:#111827}
+.stop-desc{font-size:.8rem;color:#6b7280;margin-top:2px;line-height:1.45}
+.stop-drive{font-size:.72rem;color:#9ca3af;margin-top:2px;font-style:italic}
+.stop-img{margin-top:8px;cursor:zoom-in}
+.stop-img img{width:100%;max-height:170px;object-fit:cover;border-radius:10px;display:block;transition:transform .3s ease,box-shadow .3s ease}
+.stop-img img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.12)}
+#lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:2rem;animation:fadeIn .25s ease}
+#lightbox.active{display:flex}
+#lightbox img{max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);object-fit:contain}
+#lightbox .close{position:absolute;top:1.5rem;right:2rem;color:#fff;font-size:2rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.15);border-radius:50%;transition:background .2s;line-height:1}
+#lightbox .close:hover{background:rgba(255,255,255,.3)}
+.info-box{background:#fff;border-radius:16px;padding:1.2rem;box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);margin-bottom:1.2rem}
+.info-box h3{font-size:.95rem;font-weight:700;margin-bottom:.6rem;color:#111827;display:flex;align-items:center;gap:.4rem}
+.info-box ul{list-style:none;font-size:.84rem;color:#4b5563}
+.info-box li{padding:.3rem 0;display:flex;gap:.5rem;align-items:baseline}
+.info-box li::before{content:"\2022";color:#2a9d8f;font-weight:bold}
+.cafe-tag{display:inline-block;background:#fef3c7;color:#92400e;font-size:.7rem;padding:.12rem .45rem;border-radius:20px;margin-left:.3rem;font-weight:500}
+.map-section{background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);overflow:hidden;margin-bottom:1.5rem}
+.map-section .map-h{padding:1rem 1.2rem;font-size:.95rem;font-weight:600}
+.map-section iframe{width:100%;height:380px;border:none;display:block}
+.map-link{display:block;text-align:center;padding:.8rem;background:#1a73e8;color:#fff;text-decoration:none;font-weight:600;font-size:.88rem;transition:background .2s}
+.map-link:hover{background:#1557b0}
+.plan-title{font-size:.9rem;color:#6b7280;margin-bottom:.2rem;font-weight:500}
+.plan-sub{font-size:.78rem;color:#9ca3af}
+.footer{text-align:center;padding:1.5rem;font-size:.78rem;color:#9ca3af}
+
+@media(max-width:700px){
+.carousel-card .content{padding:1.5rem}
+.carousel-card h2{font-size:1.5rem}
+.carousel-card .highlights{font-size:.8rem}
+.hero-content h1{font-size:1.6rem}
+}
+@media(max-width:600px){
+.stop{flex-wrap:wrap;gap:.4rem}.stop-time,.stop-icon{display:none}.stop-img img{max-height:140px}#lightbox{padding:1rem}
+.map-section iframe{height:280px}
+.carousel-card .cta{padding:.6rem 1.4rem;font-size:.85rem}
+.carousel-card .content{padding:1.2rem}
+.carousel-card .badge{font-size:.7rem}
+.carousel-count{font-size:.7rem;top:1rem;right:1rem}
+.carousel-arrow{font-size:1.2rem;bottom:1.2rem}
+.hero{min-height:400px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO SLIDESHOW ===== -->
+<div class="hero">
+<div class="hero-slide active" style="background-image:url(https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="hero-slide" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="hero-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="hero-content">
+<h1>Ireland Weekend Getaway</h1>
+<p class="sub">Three hand-picked routes &bull; All north of the Dublin-Galway line</p>
+<p class="meta">Sat 30 &ndash; Sun 31 May &bull; Max 1.5hr drives</p>
+</div>
+<div class="hero-dots">
+<span class="hero-dot active"></span>
+<span class="hero-dot"></span>
+<span class="hero-dot"></span>
+</div>
+</div>
+
+<!-- ===== VERTICAL PLAN CAROUSEL ===== -->
+<div class="carousel-section">
+
+<div class="carousel-card" data-plan="0">
+<div class="bg" style="background-image:url(https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="content">
+<span class="badge">Plan 1</span>
+<h2>Connemara &amp; Mayo</h2>
+<p class="route">Dublin &rarr; Cong &rarr; Kylemore &rarr; Clifden &rarr; Westport</p>
+<ul class="highlights">
+<li>Kylemore Abbey &amp; lake gardens</li>
+<li>Sky Road coastal drive</li>
+<li>Killary Fjord &amp; Keem Bay</li>
+</ul>
+<button class="cta" onclick="showPlan(0)">View Plan &rarr;</button>
+</div>
+<span class="carousel-count">1 / 3</span>
+<button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
+</div>
+
+<div class="carousel-card" data-plan="1">
+<div class="bg" style="background-image:url(https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="content">
+<span class="badge">Plan 2</span>
+<h2>Sligo &amp; Donegal</h2>
+<p class="route">Dublin &rarr; Strandhill &rarr; Sligo &rarr; Donegal &rarr; Slieve League</p>
+<ul class="highlights">
+<li>Benbulben &amp; Yeats country</li>
+<li>5,000-yr-old Carrowmore tombs</li>
+<li>Europe's highest sea cliffs</li>
+</ul>
+<button class="cta" onclick="showPlan(1)">View Plan &rarr;</button>
+</div>
+<span class="carousel-count">2 / 3</span>
+<button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
+</div>
+
+<div class="carousel-card" data-plan="2">
+<div class="bg" style="background-image:url(https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=1600)"></div>
+<div class="content">
+<span class="badge">Plan 3</span>
+<h2>Achill Island &amp; Mayo</h2>
+<p class="route">Dublin &rarr; Ballina &rarr; Ceide Fields &rarr; Achill &rarr; Keem Bay</p>
+<ul class="highlights">
+<li>Ceide Fields Neolithic site</li>
+<li>Downpatrick Head sea stack</li>
+<li>Keem Bay &mdash; #1 beach</li>
+</ul>
+<button class="cta" onclick="showPlan(2)">View Plan &rarr;</button>
+</div>
+<span class="carousel-count">3 / 3</span>
+</div>
+
+</div>
+
+<!-- ===== TABS ===== -->
+<div class="tabs">
+<div class="tabs-inner">
+<div class="tab active" onclick="showPlan(0)">Connemara &amp; Mayo</div>
+<div class="tab" onclick="showPlan(1)">Sligo &amp; Donegal</div>
+<div class="tab" onclick="showPlan(2)">Achill Island &amp; Mayo</div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- ========== PLAN 1: CONNEMARA & MAYO ========== -->
+<div class="plan active">
+<p class="plan-title">Plan 1 &bull; Sat 30 &ndash; Sun 31 May</p>
+<p class="plan-sub">Dublin &rarr; Connemara &rarr; Mayo &rarr; Dublin &bull; ~400km total</p>
+
+<div class="map-section">
+<div class="map-h">&#128205; Dublin &rarr; Cong &rarr; Kylemore &rarr; Clifden &rarr; Westport &rarr; Dublin</div>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Cong+to:Kylemore+to:Clifden+to:Westport&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Cong/Kylemore/Clifden/Westport" target="_blank">Open in Google Maps</a>
+</div>
+
+<div class="day day1">
+<div class="day-header"><span>&#127754;</span> Day 1 &mdash; Dublin to Connemara</div>
+<div class="stop">
+<div class="stop-time">07:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Depart Dublin</div><div class="stop-desc">M4/M6 west (2.5hr via Galway). Pack snacks, baby toys, charged devices.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">10:30</div><div class="stop-icon">&#127963;</div>
+<div class="stop-detail"><div class="stop-name">Cong &mdash; Quiet Village &amp; Abbey</div><div class="stop-desc">Explore Cong Abbey, Ashford Castle grounds (free). Flat paths.</div><div class="stop-drive">10 min from N84 junction</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/15424415/pexels-photo-15424415.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cong" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">12:00</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch: The Musician @ Crosskeys Cafe Bar <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Hearty Irish pub fare, relaxed garden seating.</div><div class="stop-drive">5 min from Cong</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">13:30</div><div class="stop-icon">&#127759;</div>
+<div class="stop-detail"><div class="stop-name">Kylemore Abbey</div><div class="stop-desc">Iconic abbey on lake. Gardens &amp; Victorian walled garden (flat paths).</div><div class="stop-drive">40 min via R344</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kylemore Abbey" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">15:30</div><div class="stop-icon">&#128247;</div>
+<div class="stop-detail"><div class="stop-name">Sky Road &amp; Clifden</div><div class="stop-desc">Stunning coastal detour. Sky Road viewpoint, Dogs Bay beach for a paddle.</div><div class="stop-drive">20 min from Kylemore</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Connemara landscape" loading="lazy"><img src="https://images.pexels.com/photos/30283523/pexels-photo-30283523.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Clifden harbour" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">17:30</div><div class="stop-icon">&#127968;</div>
+<div class="stop-detail"><div class="stop-name">Check in &mdash; Apartment 263, Clifden</div><div class="stop-desc">3-bed apartment in town centre with sea views. Sleeps 5.</div><div class="stop-drive"><a href="https://www.loveconnemaracottages.com/property/apartment-263-clifden/" target="_blank">&#128279; View &amp; Book</a> &mdash; also on <a href="https://www.airbnb.co.uk/rooms/22576963" target="_blank">Airbnb</a></div></div>
+</div>
+</div>
+
+<div class="day day2">
+<div class="day-header"><span>&#127754;</span> Day 2 &mdash; Mayo Coast &amp; Return</div>
+<div class="stop">
+<div class="stop-time">09:00</div><div class="stop-icon">&#9749;</div>
+<div class="stop-detail"><div class="stop-name">Breakfast at Marconi Cafe <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Great brekkie in Clifden. Fresh scones, good coffee.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">10:00</div><div class="stop-icon">&#9973;</div>
+<div class="stop-detail"><div class="stop-name">Doolough Valley &amp; Memorial</div><div class="stop-desc">Dark glacial valley. Pull in at the memorial car park for photos.</div><div class="stop-drive">20 min from Clifden</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/5568718/pexels-photo-5568718.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Doolough Valley" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">11:00</div><div class="stop-icon">&#127796;</div>
+<div class="stop-detail"><div class="stop-name">Killary Harbour &amp; Keem Bay</div><div class="stop-desc">Ireland's only fjord. Viewpoint stop. Keem Bay &mdash; stunning Blue Flag beach.</div><div class="stop-drive">15 min to Killary</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/33856353/pexels-photo-33856353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Killary Fjord" loading="lazy"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Westport <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Creel or Sage Cafe. Compact lovely streets.</div><div class="stop-drive">45 min via N59</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/15934810/pexels-photo-15934810.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Westport" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
+<div class="stop-detail"><div class="stop-name">Westport Town Walk</div><div class="stop-desc">The Octagon, Riverwalk, shop windows. Ice cream stop. Flat footpaths.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">15:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Return to Dublin</div><div class="stop-desc">M6 (2.5hr). Home ~18:30.</div></div>
+</div>
+</div>
+
+<div class="info-box">
+<h3>Food &amp; Drink</h3>
+<ul>
+<li>&#127793; Sweet Nothings, Ballyconneely &mdash; vegan/vegetarian cafe, coffee, homemade cakes</li>
+<li>&#127793; Steam Coffee House, Clifden &mdash; top-rated coffee, sourdough toasties, bakes</li>
+<li>&#127793; Walsh's Bakery, Clifden &mdash; classic Irish bakery, coffee slices, pastries</li>
+<li>&#127860; Mitchell's Takeaway, Clifden &mdash; pizza, burgers, fish &amp; chips (baby-friendly)</li>
+<li>&#9749; Misunderstood Heron, Murrisk &mdash; seasonal menu, veggie options, speciality coffee</li>
+<li>&#127793; The Creel, Westport &mdash; veggie bowls, fresh seafood, good coffee</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Accommodation</h3>
+<ul>
+<li><a href="https://www.loveconnemaracottages.com/property/apartment-263-clifden/" target="_blank">Apartment 263, Clifden</a> &mdash; 3-bed, sleeps 5. Town centre with sea views.</li>
+<li><a href="https://www.airbnb.co.uk/rooms/22576963" target="_blank">Same on Airbnb</a></li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Tips</h3>
+<ul>
+<li>R344 from Cong to Kylemore is stunning but winding</li>
+<li>Book Kylemore Abbey tickets online in advance</li>
+<li>Westport has riverside green space &mdash; nice for fresh air</li>
+</ul>
+</div>
+</div>
+
+<!-- ========== PLAN 2: SLIGO & DONEGAL ========== -->
+<div class="plan">
+<p class="plan-title">Plan 2 &bull; Sat 30 &ndash; Sun 31 May</p>
+<p class="plan-sub">Dublin &rarr; Sligo &rarr; Donegal &rarr; Dublin &bull; ~520km total</p>
+
+<div class="map-section">
+<div class="map-h">&#128205; Dublin &rarr; Strandhill &rarr; Benbulben &rarr; Sligo &rarr; Donegal &rarr; Slieve League &rarr; Dublin</div>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+to:Sligo+to:Donegal+to:Slieve+League&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben/Sligo/Donegal/Slieve+League" target="_blank">Open in Google Maps</a>
+</div>
+
+<div class="day day1">
+<div class="day-header"><span>&#127754;</span> Day 1 &mdash; Sligo Coast &amp; Mountains</div>
+<div class="stop">
+<div class="stop-time">07:00</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Depart Dublin</div><div class="stop-desc">M4/N4 west (2.5hr). Pack snacks, baby toys, charged devices.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">09:30</div><div class="stop-icon">&#9973;</div>
+<div class="stop-detail"><div class="stop-name">Strandhill Beach</div><div class="stop-desc">Surf beach with dunes. Sea air, rock pools, great coffee at Strandhill Market Kitchen. Pram-friendly promenade.</div><div class="stop-drive">5 min off N4</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">11:00</div><div class="stop-icon">&#127759;</div>
+<div class="stop-detail"><div class="stop-name">Benbulben Viewpoint</div><div class="stop-desc">Iconic flat-topped mountain, inspiration for Yeats &amp; Heaney. Photo stop at the lay-by on N15.</div><div class="stop-drive">15 min from Strandhill</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Benbulben" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">12:00</div><div class="stop-icon">&#127963;</div>
+<div class="stop-detail"><div class="stop-name">Carrowmore Megalithic Cemetery</div><div class="stop-desc">One of Europe's oldest megalithic sites. 30+ tombs, flat pathways. Visitor centre. Allow 45 min.</div><div class="stop-drive">15 min from Benbulben</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/28774067/pexels-photo-28774067.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo coastline" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Sligo Town <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Flip Side or Katie's Kitchen. Excellent coffee, sandwiches, salads.</div><div class="stop-drive">10 min from Carrowmore</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
+<div class="stop-detail"><div class="stop-name">Sligo Town Walk &mdash; Abbey &amp; Garavogue</div><div class="stop-desc">Sligo Abbey (13th-century ruins), riverside walk along the Garavogue, Yeats Memorial Building. Flat &amp; compact.</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/34443645/pexels-photo-34443645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo Town" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">16:30</div><div class="stop-icon">&#127968;</div>
+<div class="stop-detail"><div class="stop-name">Check in &mdash; Mountain View, Grange Beg</div><div class="stop-desc">3-bed holiday home near Benbulben. Sleeps 5. Peaceful countryside setting.</div><div class="stop-drive"><a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-6" target="_blank">&#128279; View &amp; Book (Selfcater)</a> &mdash; <a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-14" target="_blank">Also 6-sleep version</a></div></div>
+</div>
+</div>
+
+<div class="day day2">
+<div class="day-header"><span>&#127754;</span> Day 2 &mdash; Donegal Coast &amp; Cliffs</div>
+<div class="stop">
+<div class="stop-time">09:00</div><div class="stop-icon">&#9749;</div>
+<div class="stop-detail"><div class="stop-name">Breakfast at The Thatched Cottage, Grange <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Charming thatched pub. Full Irish, fresh soda bread.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">10:00</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Drive to Donegal Town</div><div class="stop-desc">N15 north (1hr). Scenic route along Donegal Bay.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">11:00</div><div class="stop-icon">&#127963;</div>
+<div class="stop-detail"><div class="stop-name">Donegal Castle &amp; Town Stroll</div><div class="stop-desc">16th-century castle in town centre. Guided tour. The Diamond (town square) for coffee.</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/1649273/pexels-photo-1649273.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Donegal coast" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">12:30</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Carrick <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Rusty Mackerel or The Blueberry Cafe. Fresh seafood, homemade soups.</div><div class="stop-drive">40 min from Donegal Town</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">13:45</div><div class="stop-icon">&#128247;</div>
+<div class="stop-detail"><div class="stop-name">Slieve League Cliffs</div><div class="stop-desc">Europe's highest sea cliffs (almost 3x Moher!). Viewpoint car park, short walk to edge. Breathtaking.</div><div class="stop-drive">10 min from Carrick</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Slieve League" loading="lazy"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">15:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Return to Dublin</div><div class="stop-desc">Via Sligo &amp; N4 (3.5hr). Home ~19:00.</div></div>
+</div>
+</div>
+
+<div class="info-box">
+<h3>Food &amp; Drink</h3>
+<ul>
+<li>&#127793; Strandhill Market Kitchen &mdash; artisan coffee, burritos, pastries right by the beach</li>
+<li>&#127793; Flip Side, Sligo Town &mdash; specialty coffee, brunch, toasties, baby-friendly</li>
+<li>&#127793; Katie's Kitchen, Sligo Town &mdash; homemade soups, sandwiches, cakes</li>
+<li>&#127860; The Vintage Kitchen, Sligo &mdash; Irish tapas with veggie options, craft beers</li>
+<li>&#127793; The Blueberry Cafe, Carrick &mdash; fresh scones, soup, coffee near Slieve League</li>
+<li>&#127860; The Rusty Mackerel, Carrick &mdash; award-winning seafood, relaxed atmosphere</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Accommodation</h3>
+<ul>
+<li><a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-6" target="_blank">Mountain View, Grange Beg (Sleeps 5)</a> &mdash; 3-bed near Benbulben</li>
+<li><a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-14" target="_blank">Mountain View (Sleeps 6)</a> &mdash; same location, larger option</li>
+<li><a href="https://selfcater.com/rentals/ireland/donegal/carrick/kits-cottage-1" target="_blank">Kit's Cottage, Carrick (Sleeps 5)</a> &mdash; near Slieve League</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Tips</h3>
+<ul>
+<li>Longest drives of all plans &mdash; worth it for the scenery</li>
+<li>Slieve League is free and less crowded than Moher</li>
+<li>Benbulben viewpoint is a quick roadside stop on N15</li>
+<li>Pack layers &mdash; Atlantic coast can be windy</li>
+</ul>
+</div>
+</div>
+
+<!-- ========== PLAN 3: ACHILL ISLAND & NORTH MAYO ========== -->
+<div class="plan">
+<p class="plan-title">Plan 3 &bull; Sat 30 &ndash; Sun 31 May</p>
+<p class="plan-sub">Dublin &rarr; North Mayo Coast &rarr; Achill Island &rarr; Dublin &bull; ~480km total</p>
+
+<div class="map-section">
+<div class="map-h">&#128205; Dublin &rarr; Ballina &rarr; Ceide Fields &rarr; Downpatrick Head &rarr; Achill Island &rarr; Keem Bay &rarr; Dublin</div>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Ballina+to:Ceide+Fields+to:Downpatrick+Head+to:Achill+Island+to:Keem+Bay&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Ballina/Ceide+Fields/Downpatrick+Head/Achill+Island/Keem+Bay" target="_blank">Open in Google Maps</a>
+</div>
+
+<div class="day day1">
+<div class="day-header"><span>&#127754;</span> Day 1 &mdash; North Mayo Coast &amp; Ceide Fields</div>
+<div class="stop">
+<div class="stop-time">07:00</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Depart Dublin</div><div class="stop-desc">M4/N4/N5 to Ballina (3hr). Scenic after Castlebar. Pack snacks for the road.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">10:00</div><div class="stop-icon">&#127759;</div>
+<div class="stop-detail"><div class="stop-name">Ceide Fields Visitor Centre</div><div class="stop-desc">5,000-year-old Neolithic farmland buried in bog. Award-winning cliff-top centre. Guided tour of the bog trails. Allow 1hr.</div><div class="stop-drive">25 min from Ballina</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/10428434/pexels-photo-10428434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ceide Fields" loading="lazy"><img src="https://images.pexels.com/photos/1204996/pexels-photo-1204996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mayo coast" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">11:30</div><div class="stop-icon">&#127987;</div>
+<div class="stop-detail"><div class="stop-name">Downpatrick Head</div><div class="stop-desc">Dramatic sea stack &amp; blowhole. WW2 lookout, puffin colony in summer. Free, 30 min.</div><div class="stop-drive">10 min from Ceide Fields</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head" loading="lazy"><img src="https://images.pexels.com/photos/12530564/pexels-photo-12530564.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head cliffs" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">12:30</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Belmullet or Bangor Erris <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Talbot's Bar &amp; Restaurant or The Dressing Room Cafe. Fresh local seafood, pub classics.</div><div class="stop-drive">20 min from Downpatrick</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">14:30</div><div class="stop-icon">&#9973;</div>
+<div class="stop-detail"><div class="stop-name">Drive to Achill Island</div><div class="stop-desc">Cross Michael Davitt Bridge to Achill. Scenic coastal road with Atlantic views.</div><div class="stop-drive">45 min via R313</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">15:30</div><div class="stop-icon">&#128247;</div>
+<div class="stop-detail"><div class="stop-name">Achill Island Coastal Drive</div><div class="stop-desc">Minaun Cliffs viewpoint, Keel Lake, Dooega Beach. Wild Atlantic scenery. Photo stops along the way.</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill coast" loading="lazy"><img src="https://images.pexels.com/photos/29361156/pexels-photo-29361156.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill Island" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">17:00</div><div class="stop-icon">&#127968;</div>
+<div class="stop-detail"><div class="stop-name">Check in &mdash; Sound Cottage, Achill Island</div><div class="stop-desc">3-bed detached cottage, quiet location. Sleeps 6. Peaceful countryside near the sound.</div><div class="stop-drive"><a href="https://selfcater.com/rentals/ireland/mayo/achill-island/sound-cottage" target="_blank">&#128279; View &amp; Book (Selfcater)</a></div></div>
+</div>
+</div>
+
+<div class="day day2">
+<div class="day-header"><span>&#127754;</span> Day 2 &mdash; Keem Bay &amp; Return</div>
+<div class="stop">
+<div class="stop-time">09:00</div><div class="stop-icon">&#9749;</div>
+<div class="stop-detail"><div class="stop-name">Breakfast at The Achill Bakery Cafe <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Freshly baked scones, sourdough, good coffee. Family-run spot.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">10:00</div><div class="stop-icon">&#127796;</div>
+<div class="stop-detail"><div class="stop-name">Keem Bay</div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. One of Ireland's most beautiful beaches. Paddle on calm days.</div><div class="stop-drive">20 min from cottage</div>
+<div class="stop-img"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy" style="margin-top:6px"></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">12:00</div><div class="stop-icon">&#128247;</div>
+<div class="stop-detail"><div class="stop-name">Saddle Head &amp; Deserted Village</div><div class="stop-desc">Ruined village at the western tip of Achill. Eerie, beautiful, great photos. 30 min.</div><div class="stop-drive">15 min from Keem</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Westport <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Creel or An Port Mor. Vibrant town with great food scene.</div><div class="stop-drive">40 min via N59</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
+<div class="stop-detail"><div class="stop-name">Westport Town Stroll</div><div class="stop-desc">The Octagon, Riverwalk, ice cream stop. Compact &amp; charming Georgian town.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">15:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Return to Dublin</div><div class="stop-desc">N5/N4/M4 east (3hr). Home ~18:30.</div></div>
+</div>
+</div>
+
+<div class="info-box">
+<h3>Food &amp; Drink</h3>
+<ul>
+<li>&#127793; The Achill Bakery Cafe, Keel &mdash; artisan bakery, great coffee, breakfast baps</li>
+<li>&#127860; Talbot's Bar, Belmullet &mdash; pub food with sea views, baby-friendly corner</li>
+<li>&#127793; The Dressing Room Cafe, Bangor Erris &mdash; carvery, salad bar, homemade desserts</li>
+<li>&#127860; The Beehive Cafe, Westport &mdash; tapas &amp; pizza, relaxed vibe</li>
+<li>&#127793; An Port Mor, Westport &mdash; cafe by day, bistro by night, great scones</li>
+<li>&#127860; The Creel, Westport &mdash; fresh seafood, veggie bowls, baby-friendly</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Accommodation</h3>
+<ul>
+<li><a href="https://selfcater.com/rentals/ireland/mayo/achill-island/sound-cottage" target="_blank">Sound Cottage, Achill Island</a> &mdash; 3-bed, sleeps 6. Quiet countryside location.</li>
+<li><a href="https://selfcater.com/rentals/ireland/mayo/achill-island/3-bed-in-achill-island-1" target="_blank">3-Bed in Achill Island</a> &mdash; stylish home with Clew Bay &amp; Minaun Cliffs views.</li>
+<li><a href="https://selfcater.com/rentals/ireland/mayo/achill-island/glenvale-cottage" target="_blank">Glenvale Cottage</a> &mdash; 3-bed in Dugort, near Dooega Beach.</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>Tips</h3>
+<ul>
+<li>Ceide Fields visitor centre is closed in winter — check opening times for May</li>
+<li>Keem Bay is Ireland's most photographed beach — visit early for fewer crowds</li>
+<li>Achill Island is the largest island off Ireland — lots to explore</li>
+<li>Downpatrick Head has a blowhole that sprays on windy days</li>
+<li>All stops in Republic of Ireland — no passport needed</li>
+</ul>
+</div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">Created with love by Prashanth</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+<span class="close">&times;</span>
+<img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function showPlan(i){document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===i));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})}
+document.querySelectorAll('.stop-img img').forEach(img=>{img.addEventListener('click',function(e){e.stopPropagation();openLightbox(this.src)})});
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox()});
+// Hero slideshow
+let slideIdx=0;const hSlides=document.querySelectorAll('.hero-slide'),hDots=document.querySelectorAll('.hero-dot');
+function nextSlide(){hSlides.forEach(s=>s.classList.remove('active'));hDots.forEach(d=>d.classList.remove('active'));slideIdx=(slideIdx+1)%hSlides.length;hSlides[slideIdx].classList.add('active');hDots[slideIdx].classList.add('active')}
+if(hSlides.length>1)setInterval(nextSlide,4500);
+</script>
+
+</body>
+</html>
