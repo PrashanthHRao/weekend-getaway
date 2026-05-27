@@ -147,3 +147,9 @@
   - Sky Road, Donegal, Slieve League, Keem Bay: route-specific descriptions updated
 - **Key Decisions:** Surf lessons kept (fun paid activity fits user's preference). Activity images sourced via Flickr Feed API (no API key, no rate limit). Each activity badge now names exact path/route (e.g., "Carrowbeg River walk via North Mall").
 - **Next Steps:** Deploy to GitHub Pages.
+
+### 2026-05-27 — Session 15
+- **Goal:** Move activity section below stop images in layout; make activity section visually prominent with card styling
+- **Progress:** Swapped `.stop-acts` after `.stop-imgs` in all 10 stops. Added card styling to `.stop-acts` (green-tinted background `#f0faf5`, green border `#bbf7d0`, border-radius 8px, padding). Added "🎯 Activities" heading (`.acts-heading` — uppercase, green `#16a34a`, full-width) inside each stop-acts.
+- **Key Decisions:** `.stop-acts` changed from simple flex row to card with heading for visual prominence. Green theme matches the activity/nature vibe.
+- **Next Steps:** Deploy to GitHub Pages.
