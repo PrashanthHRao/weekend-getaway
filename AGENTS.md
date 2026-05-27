@@ -31,6 +31,7 @@
 - getyourguide — similar top itineraries
 - selfcater.com — verified available properties
 - pexels.com — cdn images
+- heritageireland.ie — cdn at `heritageireland.ie/assets/uploads/2020/03/` for OPW sites
 
 ## Rejected / replaced
 - athlone / midlands → replaced
@@ -43,7 +44,7 @@
 ## Pexels image IDs per plan
 
 ### Plan 1 — Connemara & Mayo
-- 15424415 (cong), 18549116 (kylemore), 21923111 (connemara), 30283523 (clifden harbour), 5568718 (doolough), 33856353 (killary), 9772544 (keem bay), 15934810 (westport)
+- 15424415 (cong), 18549116 (kylemore), 10874098 (kylemore lake), 34244323 (kylemore scenic), 21923111 (connemara), 30283523 (clifden harbour), 5568718 (doolough), 33856353 (killary), 9772544 (keem bay), 15934810 (westport)
 
 ### Plan 2 — Sligo & Donegal
 - 6974660 (strandhill), 17938479 (benbulben), 28774067 (sligo coast), 34443645 (sligo town), 1649273 (donegal coast), 15934813 (slieve league)
@@ -111,3 +112,25 @@
 - **Goal:** Enable left/right image navigation in lightbox via swipe, arrow buttons, and keyboard
 - **Progress:** Added `<` `>` nav buttons, swipe detection (50px threshold), counter "N / M", and ←/→ keyboard nav. Added `touch-action:none` to lightbox overlay to prevent page scroll-through. Lightbox images deduplicated into gallery array for circular navigation.
 - **Key Decisions:** Touch swipe uses `{passive:true}` with `touch-action:none` CSS — no `preventDefault()` needed. Gallery dedupes identical image URLs.
+
+### 2026-05-27 — Session 10
+- **Goal:** Research Wild Nephin National Park as potential Plan 3 stop (baby-friendly, nearby accommodation)
+- **Progress:** Wild Nephin confirmed baby-friendly (boardwalk trail, café, visitor centre). On N59 between Downpatrick and Achill — natural 45-min stop on the route. Accommodation not needed — on the way to Sound Cottage.
+- **Key Decisions:** User declined adding Wild Nephin or any other places. All 3 plans left as-is. No further itinerary changes.
+
+### 2026-05-27 — Session 11
+- **Goal:** Remove incorrect generic/regional images from stop galleries; keep only place-specific images per stop; convert Plan 3 `stop-img` (stacked) to `stop-imgs` (horizontal scroll); add Must-See badges to Plan 3
+- **Progress:** Removed all generic Irish landscape/coastline photos from Plan 1 and Plan 2 stops. Kept only verified place-specific images. Converted Plan 3's 4 `stop-img` divs to `stop-imgs`. Removed old `.stop-img img` CSS. Added Must-See badges to Ceide Fields, Downpatrick Head, and Keem Bay. Moved Westport photo from lunch stop to Town Walk stop.
+- **Key Decisions:** Generic regional images (Connemara landscape, Mayo coast, Irish coastline, Atlantic cliffs, etc.) removed entirely — each stop shows only images of that specific place. Stops with only 1 verified specific image (Cong, Kylemore, Clifden, Doolough, Westport, Strandhill, Benbulben, Sligo Town, Donegal Castle, Slieve League, Ceide Fields) display just that 1 image. Carrowmore has no stop images at all since no Pexels ID found for it. Downpatrick Head (2 images) and Keem Bay (2 images) are the only multi-image stops since both have multiple verified place-specific Pexels photos.
+- **Next Steps:** Deploy to GitHub Pages once image fixes are confirmed. Consider finding additional place-specific Pexels IDs for stops with only 1 image if desired.
+
+### 2026-05-27 — Session 12
+- **Goal:** Add more place-specific images from Heritage Ireland CDN and new Pexels IDs to reach ~3 images per stop
+- **Progress:** Kylemore Abbey +2 Pexels (10874098, 34244323) = 3 total. Carrowmore +3 Heritage Ireland (Carrowmore-1, Carrowmore-Listoghil-Chamber, Carrowmore-Circle) = 3 total. Sligo Town +2 Heritage Ireland (Sligo-Abbey, Sligo-Abbey-1) = 3 total. Donegal Castle +2 Heritage Ireland (Donegal-Castle-interior, Donegal-Castle-roof) = 3 total. Ceide Fields +2 Heritage Ireland (Ceide-Fields-1, Ceide-Fields-Visitor-Centre) = 3 total. Cong, Clifden, Doolough, Killary, Westport, Strandhill, Benbulben, Slieve League still at 1 image each — no new sources found.
+- **Key Decisions:** Heritage Ireland CDN (`heritageireland.ie/assets/uploads/2020/03/`) confirmed as reliable image source for OPW-managed heritage sites with predictable filenames.
+
+### 2026-05-27 — Session 13
+- **Goal:** Fix image-to-description mismatches (Clifden harbour→Sky Road/Dogs Bay, Donegal coast→Donegal Castle, Westport beach→town/riverwalk); add remaining 3rd images to all stops
+- **Progress:** Found `Donegal-Castle.jpg` (exterior view) on Heritage Ireland CDN — replaces generic `Donegal coast` (1649273). Found more HI images: `Carrowmore-2.jpg`, `Carrowmore-3.jpg`, `Carrowmore-Snow.jpg`, `Sligo-Abbey-2.jpg`. Identified unused Pexels 5765122 (Achill cliffs) and 35036863 (Achill beach) as suitable additions for Achill Coastal Drive. Pexels search/pages all 403, web search rate-limited (429), Google Images returns obfuscated JS — cannot find Sky Road viewpoint, Dogs Bay beach, Westport Octagon, or Cong Abbey replacement images.
+- **Key Decisions:** None yet — blocked on image sources for non-OPW sites.
+- **Next Steps:** Await user input on how to source images for Clifden (Sky Road, Dogs Bay), Westport Town Walk, and other non-OPW stops; or proceed with partial fixes (Donegal Castle replacement, Achill additions) and deploy.

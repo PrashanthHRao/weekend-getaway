@@ -81,9 +81,11 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .stop-name{font-weight:600;font-size:.92rem;color:#111827}
 .stop-desc{font-size:.8rem;color:#6b7280;margin-top:2px;line-height:1.45}
 .stop-drive{font-size:.72rem;color:#9ca3af;margin-top:2px;font-style:italic}
-.stop-img{margin-top:8px;cursor:zoom-in}
-.stop-img img{width:100%;max-height:170px;object-fit:cover;border-radius:10px;display:block;transition:transform .3s ease,box-shadow .3s ease}
-.stop-img img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.must-see{display:inline-block;background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:600;padding:.1rem .4rem;border-radius:20px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em;line-height:1.4}
+.stop-imgs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:8px;padding-bottom:4px;cursor:default}
+.stop-imgs img{flex:0 0 auto;width:200px;height:140px;object-fit:cover;border-radius:10px;cursor:zoom-in;scroll-snap-align:start;transition:transform .3s ease,box-shadow .3s ease}
+.stop-imgs img:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.12)}
+@media(max-width:600px){.stop-imgs img{width:160px;height:120px}}
 #lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:2rem;animation:fadeIn .25s ease;touch-action:none}
 #lightbox.active{display:flex}
 #lightbox img{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);object-fit:contain;pointer-events:auto}
@@ -116,7 +118,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .hero-content h1{font-size:1.6rem}
 }
 @media(max-width:600px){
-.stop{flex-wrap:wrap;gap:.4rem}.stop-time,.stop-icon{display:none}.stop-img img{max-height:140px}#lightbox{padding:1rem}
+.stop{flex-wrap:wrap;gap:.4rem}.stop-time,.stop-icon{display:none}#lightbox{padding:1rem}
 .map-section iframe{height:280px}
 .carousel-card .cta{padding:.6rem 1.4rem;font-size:.85rem}
 .carousel-card .content{padding:1.2rem}
@@ -256,7 +258,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">10:30</div><div class="stop-icon">&#127963;</div>
 <div class="stop-detail"><div class="stop-name">Cong &mdash; Quiet Village &amp; Abbey</div><div class="stop-desc">Explore Cong Abbey, Ashford Castle grounds (free). Flat paths.</div><div class="stop-drive">10 min from N84 junction</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/15424415/pexels-photo-15424415.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cong" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/15424415/pexels-photo-15424415.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cong" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:00</div><div class="stop-icon">&#127860;</div>
@@ -264,13 +266,13 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <div class="stop">
 <div class="stop-time">13:30</div><div class="stop-icon">&#127759;</div>
-<div class="stop-detail"><div class="stop-name">Kylemore Abbey</div><div class="stop-desc">Iconic abbey on lake. Gardens &amp; Victorian walled garden (flat paths).</div><div class="stop-drive">40 min via R344</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kylemore Abbey" loading="lazy"></div></div>
+<div class="stop-detail"><div class="stop-name">Kylemore Abbey <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Iconic abbey on lake. Gardens &amp; Victorian walled garden (flat paths).</div><div class="stop-drive">40 min via R344</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kylemore Abbey" loading="lazy"><img src="https://images.pexels.com/photos/10874098/pexels-photo-10874098.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kylemore Abbey lake" loading="lazy"><img src="https://images.pexels.com/photos/34244323/pexels-photo-34244323.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Kylemore Abbey scenic" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">15:30</div><div class="stop-icon">&#128247;</div>
-<div class="stop-detail"><div class="stop-name">Sky Road &amp; Clifden</div><div class="stop-desc">Stunning coastal detour. Sky Road viewpoint, Dogs Bay beach for a paddle.</div><div class="stop-drive">20 min from Kylemore</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Connemara landscape" loading="lazy"><img src="https://images.pexels.com/photos/30283523/pexels-photo-30283523.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Clifden harbour" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-detail"><div class="stop-name">Sky Road &amp; Clifden <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Stunning coastal detour. Sky Road viewpoint, Dogs Bay beach for a paddle.</div><div class="stop-drive">20 min from Kylemore</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/30283523/pexels-photo-30283523.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Clifden harbour" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">17:30</div><div class="stop-icon">&#127968;</div>
@@ -287,21 +289,21 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">10:00</div><div class="stop-icon">&#9973;</div>
 <div class="stop-detail"><div class="stop-name">Doolough Valley &amp; Memorial</div><div class="stop-desc">Dark glacial valley. Pull in at the memorial car park for photos.</div><div class="stop-drive">20 min from Clifden</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/5568718/pexels-photo-5568718.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Doolough Valley" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/5568718/pexels-photo-5568718.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Doolough Valley" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">11:00</div><div class="stop-icon">&#127796;</div>
-<div class="stop-detail"><div class="stop-name">Killary Harbour &amp; Keem Bay</div><div class="stop-desc">Ireland's only fjord. Viewpoint stop. Keem Bay &mdash; stunning Blue Flag beach.</div><div class="stop-drive">15 min to Killary</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/33856353/pexels-photo-33856353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Killary Fjord" loading="lazy"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-detail"><div class="stop-name">Killary Harbour &amp; Keem Bay <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Ireland's only fjord. Viewpoint stop. Keem Bay &mdash; stunning Blue Flag beach.</div><div class="stop-drive">15 min to Killary</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/33856353/pexels-photo-33856353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Killary Fjord" loading="lazy"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
-<div class="stop-detail"><div class="stop-name">Lunch in Westport <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Creel or Sage Cafe. Compact lovely streets.</div><div class="stop-drive">45 min via N59</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/15934810/pexels-photo-15934810.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Westport" loading="lazy"></div></div>
+<div class="stop-detail"><div class="stop-name">Lunch in Westport <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Creel or Sage Cafe. Compact lovely streets.</div><div class="stop-drive">45 min via N59</div></div>
 </div>
 <div class="stop">
 <div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
-<div class="stop-detail"><div class="stop-name">Westport Town Walk</div><div class="stop-desc">The Octagon, Riverwalk, shop windows. Ice cream stop. Flat footpaths.</div></div>
+<div class="stop-detail"><div class="stop-name">Westport Town Walk</div><div class="stop-desc">The Octagon, Riverwalk, shop windows. Ice cream stop. Flat footpaths.</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/15934810/pexels-photo-15934810.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Westport" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">15:30</div><div class="stop-icon">&#128663;</div>
@@ -359,17 +361,17 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">09:30</div><div class="stop-icon">&#9973;</div>
 <div class="stop-detail"><div class="stop-name">Strandhill Beach</div><div class="stop-desc">Surf beach with dunes. Sea air, rock pools, great coffee at Strandhill Market Kitchen. Pram-friendly promenade.</div><div class="stop-drive">5 min off N4</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">11:00</div><div class="stop-icon">&#127759;</div>
-<div class="stop-detail"><div class="stop-name">Benbulben Viewpoint</div><div class="stop-desc">Iconic flat-topped mountain, inspiration for Yeats &amp; Heaney. Photo stop at the lay-by on N15.</div><div class="stop-drive">15 min from Strandhill</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Benbulben" loading="lazy"></div></div>
+<div class="stop-detail"><div class="stop-name">Benbulben Viewpoint <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Iconic flat-topped mountain, inspiration for Yeats &amp; Heaney. Photo stop at the lay-by on N15.</div><div class="stop-drive">15 min from Strandhill</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Benbulben" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:00</div><div class="stop-icon">&#127963;</div>
 <div class="stop-detail"><div class="stop-name">Carrowmore Megalithic Cemetery</div><div class="stop-desc">One of Europe's oldest megalithic sites. 30+ tombs, flat pathways. Visitor centre. Allow 45 min.</div><div class="stop-drive">15 min from Benbulben</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/28774067/pexels-photo-28774067.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo coastline" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-1.jpg" alt="Carrowmore Queen Maeve Cairn" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-Listoghil-Chamber.jpg" alt="Carrowmore Listoghil Chamber" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-Circle.jpg" alt="Carrowmore stone circle" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-2.jpg" alt="Carrowmore tomb" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-3.jpg" alt="Carrowmore landscape" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-Snow.jpg" alt="Carrowmore snow" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
@@ -378,7 +380,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
 <div class="stop-detail"><div class="stop-name">Sligo Town Walk &mdash; Abbey &amp; Garavogue</div><div class="stop-desc">Sligo Abbey (13th-century ruins), riverside walk along the Garavogue, Yeats Memorial Building. Flat &amp; compact.</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/34443645/pexels-photo-34443645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo Town" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/34443645/pexels-photo-34443645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo Town" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Sligo-Abbey.jpg" alt="Sligo Abbey" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Sligo-Abbey-1.jpg" alt="Sligo Abbey cloister" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Sligo-Abbey-2.jpg" alt="Sligo Abbey ruins" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">16:30</div><div class="stop-icon">&#127968;</div>
@@ -399,7 +401,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">11:00</div><div class="stop-icon">&#127963;</div>
 <div class="stop-detail"><div class="stop-name">Donegal Castle &amp; Town Stroll</div><div class="stop-desc">16th-century castle in town centre. Guided tour. The Diamond (town square) for coffee.</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/1649273/pexels-photo-1649273.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Donegal coast" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle.jpg" alt="Donegal Castle exterior" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle-interior.jpg" alt="Donegal Castle interior" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle-roof.jpg" alt="Donegal Castle roof" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:30</div><div class="stop-icon">&#127860;</div>
@@ -408,7 +410,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">13:45</div><div class="stop-icon">&#128247;</div>
 <div class="stop-detail"><div class="stop-name">Slieve League Cliffs</div><div class="stop-desc">Europe's highest sea cliffs (almost 3x Moher!). Viewpoint car park, short walk to edge. Breathtaking.</div><div class="stop-drive">10 min from Carrick</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Slieve League" loading="lazy"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Slieve League" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">15:30</div><div class="stop-icon">&#128663;</div>
@@ -467,13 +469,13 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <div class="stop">
 <div class="stop-time">10:00</div><div class="stop-icon">&#127759;</div>
-<div class="stop-detail"><div class="stop-name">Ceide Fields Visitor Centre</div><div class="stop-desc">5,000-year-old Neolithic farmland buried in bog. Award-winning cliff-top centre. Guided tour of the bog trails. Allow 1hr.</div><div class="stop-drive">25 min from Ballina</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/10428434/pexels-photo-10428434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ceide Fields" loading="lazy"><img src="https://images.pexels.com/photos/1204996/pexels-photo-1204996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mayo coast" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-detail"><div class="stop-name">Ceide Fields Visitor Centre <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">5,000-year-old Neolithic farmland buried in bog. Award-winning cliff-top centre. Guided tour of the bog trails. Allow 1hr.</div><div class="stop-drive">25 min from Ballina</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/10428434/pexels-photo-10428434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ceide Fields" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Ceide-Fields-1.jpg" alt="Ceide Fields cliffs" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Ceide-Fields-Visitor-Centre.jpg" alt="Ceide Fields visitor centre" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">11:30</div><div class="stop-icon">&#127987;</div>
-<div class="stop-detail"><div class="stop-name">Downpatrick Head</div><div class="stop-desc">Dramatic sea stack &amp; blowhole. WW2 lookout, puffin colony in summer. Free, 30 min.</div><div class="stop-drive">10 min from Ceide Fields</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head" loading="lazy"><img src="https://images.pexels.com/photos/12530564/pexels-photo-12530564.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head cliffs" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-detail"><div class="stop-name">Downpatrick Head <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Dramatic sea stack &amp; blowhole. WW2 lookout, puffin colony in summer. Free, 30 min.</div><div class="stop-drive">10 min from Ceide Fields</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head" loading="lazy"><img src="https://images.pexels.com/photos/12530564/pexels-photo-12530564.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head cliffs" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:30</div><div class="stop-icon">&#127860;</div>
@@ -486,7 +488,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 <div class="stop">
 <div class="stop-time">15:30</div><div class="stop-icon">&#128247;</div>
 <div class="stop-detail"><div class="stop-name">Achill Island Coastal Drive</div><div class="stop-desc">Minaun Cliffs viewpoint, Keel Lake, Dooega Beach. Wild Atlantic scenery. Photo stops along the way.</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill coast" loading="lazy"><img src="https://images.pexels.com/photos/29361156/pexels-photo-29361156.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill Island" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill coast" loading="lazy"><img src="https://images.pexels.com/photos/29361156/pexels-photo-29361156.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill Island" loading="lazy"><img src="https://images.pexels.com/photos/5765122/pexels-photo-5765122.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill cliffs" loading="lazy"><img src="https://images.pexels.com/photos/35036863/pexels-photo-35036863.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Achill beach" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">17:00</div><div class="stop-icon">&#127968;</div>
@@ -502,8 +504,8 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 </div>
 <div class="stop">
 <div class="stop-time">10:00</div><div class="stop-icon">&#127796;</div>
-<div class="stop-detail"><div class="stop-name">Keem Bay</div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. One of Ireland's most beautiful beaches. Paddle on calm days.</div><div class="stop-drive">20 min from cottage</div>
-<div class="stop-img"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy" style="margin-top:6px"></div></div>
+<div class="stop-detail"><div class="stop-name">Keem Bay <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. One of Ireland's most beautiful beaches. Paddle on calm days.</div><div class="stop-drive">20 min from cottage</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy"></div></div>
 </div>
 <div class="stop">
 <div class="stop-time">12:00</div><div class="stop-icon">&#128247;</div>
@@ -572,7 +574,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 function showPlan(i){document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===i));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.container').scrollIntoView({behavior:'smooth'})}
 // Lightbox gallery
 var lbImages=[],lbIdx=0;
-document.querySelectorAll('.stop-img img').forEach(function(img){var src=img.src;if(lbImages.indexOf(src)===-1)lbImages.push(src);img.addEventListener('click',function(e){e.stopPropagation();lbIdx=lbImages.indexOf(this.src);openLightbox(this.src)})});
+document.querySelectorAll('.stop-imgs img').forEach(function(img){img.addEventListener('click',function(e){e.stopPropagation();var p=this.closest('.stop-imgs');lbImages=[];Array.from(p.querySelectorAll('img')).forEach(function(s){if(lbImages.indexOf(s.src)===-1)lbImages.push(s.src)});lbIdx=lbImages.indexOf(this.src);openLightbox(this.src)})});
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+lbImages.length}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
 function prevImage(){if(!lbImages.length)return;lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;document.getElementById('lightbox-img').src=lbImages[lbIdx];document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+lbImages.length}
