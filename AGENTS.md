@@ -12,18 +12,19 @@
 - photos via pexels cdn `images.pexels.com/photos/{id}/...`
 - maps via google `maps?q=...&output=embed` (no api key) — NOTE: `maps?q=` only shows pins; use `saddr`/`daddr` for route lines
 - clickable images → lightbox, tabbed by plan
-- accommodations: sleep 5, under €200/night, real bookable direct links only
+- accommodations: sleep 5, under €250/night, real bookable direct links only
 - galway is waypoint only — no galway itinerary stops
 - **ONLY plans north of the Dublin-Galway line** — no plans in southern Ireland (below lat ~53.3°N)
 - **NO Northern Ireland/UK** — all stops must be in Republic of Ireland
 
-## Current 3 plans (all north of Dublin-Galway line, all ROI)
+## Current 4 plans (all north of Dublin-Galway line, all ROI)
 
 | # | plan | region | accommodation | sleep | €/night |
 |---|------|--------|---------------|-------|---------|
 | 1 | Connemara & Mayo | west | apt 263 clifden (loveconnemaracottages.com) | 5 | ~100 |
 | 2 | Sligo & Donegal | northwest | mountain view grange beg (selfcater.com) / kit's cottage | 5 | ~145 |
 | 3 | Achill Island & North Mayo | west/north | sound cottage, achill island (selfcater.com) | 6 | ~52 |
+| 4 | Best of All | northwest → west | mountain view grange beg / tullavilla / close to beach / cat's house | 5 | varies |
 
 ## Research sources
 - tripadvisor.ie top tours
@@ -172,3 +173,60 @@
 - **Progress:** Fixed Plan 2 map: replaced `Carrick` (resolved to Carrick-on-Shannon) with `Killybegs`. Created Plan 4 tab, carousel card, and full itinerary combining Plan 2 route (Sligo/Donegal) + Downpatrick Head + Achill Island + Keem Bay. Plan 4 has two maps (Day 1: Dublin→Strandhill→Benbulben→Sligo; Day 2: Sligo→Donegal→Killybegs→Downpatrick Head→Achill→Keem Bay).
 - **Key Decisions:** Carrick-on-Shannon was wrong location; Killybegs is the correct nearest town to Slieve League. Best of All plan has long Day 2 (~22:00 return) but maximizes highlights.
 - **Next Steps:** Verify Plan 4 renders correctly. Push to git.
+
+### 2026-05-27 — Session 19
+- **Goal:** Add more accommodation options for Best of All plan (Plan 4) including Airbnb, sleeps 5, under €250/night for May 30-31
+- **Progress:** Added 3 more options to Plan 4 accommodation section:
+  - Mountain View at Grange Beg #2 on Airbnb (same property, alternative booking channel)
+  - Tullavilla, Castlebaldwin (3-bed cottage, sleeps 5, from €40/night, selfcater.com)
+  - Close to Beach, Grange, Nrth Sligo on Airbnb (house near Benbulben)
+- **Key Decisions:** All options within the Sligo area (Plan 4 overnight location). Budget limit raised from €200 to €250 per user request.
+
+### 2026-05-28 — Session 20
+- **Goal:** Add "Cat's House" at 68 Moy Heights, Ballina, Co. Mayo (user-provided address, EirCode F26 E0C3) to Plan 4 accommodation
+- **Progress:** Found the Airbnb listing "Cat's House" (room ID 874593542920789490) — top-rated guest favourite in Ballina. Added as 5th accommodation option in Plan 4 list.
+- **Key Decisions:** Cat's House is in Ballina (en route on Day 2 between Grange and Downpatrick Head), making it a useful overnight option. Airbnb link used since no selfcater.com listing found.
+
+### 2026-05-28 — Session 21
+- **Goal:** Make Cat's House the primary (only) accommodation for Plan 4; update itinerary and maps to reflect Ballina overnight instead of Grange/Sligo
+- **Progress:**
+  - Removed all other accommodation options; only Cat's House remains
+  - Day 1 map: added Ballina as final waypoint (Dublin→Strandhill→Benbulben→Sligo Town→Ballina)
+  - Day 1 itinerary: added "Drive to Ballina" stop (1hr), check-in time moved to 17:30 at Cat's House
+  - Day 1 header: changed from "Dublin to Sligo" to "Dublin to Ballina"
+  - Day 2 map: changed start from Grange, Co Sligo to Ballina, Co Mayo
+  - Day 2 breakfast: changed from The Thatched Cottage, Grange to The Merry Monk, Ballina
+  - Day 2 drive time: updated from "1.5hr from Grange" to "1hr from Ballina"
+  - Food & Drink: added Ballina options (The Merry Monk for breakfast, Belleek Castle Restaurant for dinner), removed Talbot's Bar (Belmullet — no longer en route)
+  - Carousel card route text left as-is (Dublin→Sligo→Mayo Coast→Dublin still accurate)
+- **Key Decisions:** Ballina is now the overnight base for Plan 4. Day 1 extended by ~1hr drive from Sligo to Ballina. Day 2 shortened slightly (1hr drive to Downpatrick Head instead of 1.5hr). Dinner at Belleek Castle added as an evening option near the accommodation.
+- **Next Steps:** None — all requested tasks complete.
+
+### 2026-05-28 — Session 22
+- **Goal:** Hide Plans 1-3 by default; add toggle switch on hero page to show/hide ditched plans; make Best of All the final/only plan; animate toggle
+- **Progress:**
+  - Added `.ditched` CSS class with `max-height` + `opacity` transition for smooth animate in/out
+  - Added `.tab.ditched { display:none }` (tabs don't animate, just appear/disappear)
+  - Added toggle switch in the hero content area (starts unchecked / hidden state)
+  - Added `ditched` class to Plans 1-3 divs, their carousel cards, and their tabs
+  - Made Best of All plan the only visible/active plan by default (`class="plan active"`)
+  - Renamed Best of All to "★ Our Trip" (carousel badge), "Our Ireland Weekend" (title)
+  - Updated plan title from "Plan 4" to "Our Ireland Weekend"
+  - Updated carousel count from "1 / 4" to "1 / 1"
+  - Updated hero subtitle to "Dublin → Sligo Coast → North Mayo → Dublin"
+  - Added JS index mapping `m=[3,0,1,2][i]` so tab 0 → Plan 4 (Best of All), tab 1 → Plan 1, etc.
+  - Added `toggleDitched(on)` function resets to Best of All when hiding ditched plans
+- **Key Decisions:** No DOM reordering — kept plan divs in original order and use JS index mapping instead. Smooth animation via CSS `max-height` + `opacity` transition (plan divs and carousel cards). Tabs just snap show/hide (no animation needed for small UI elements). Toggle sits on hero page for visibility.
+- **Next Steps:** None
+
+### 2026-05-28 — Session 23
+- **Goal:** Add Benbulben Forest Walk images + activity link, Mullaghmore Head stop, map URL fix, shift times
+- **Progress:**
+  - Added 2 Benbulben Forest Walk images (sligowalks.ie) + "Info" link to sligowalks.ie walk page to Benbulben stop
+  - Added Mullaghmore Head stop at 12:30 (Classiebawn Castle, quick 20-min coastal photo stop)
+  - Updated Day 1 map URL: `Benbulben+Co+Sligo` → `Benbulben+Forest+Walk+Co+Sligo`, added `Mullaghmore+Head` waypoint
+  - Fixed Carrowmore drive text: "15 min from Benbulben" → "15 min from Mullaghmore"
+  - Shifted times: Carrowmore 13:00, Lunch 14:00 (was 12:30, 13:30) to accommodate Mullaghmore
+  - Updated Day 1 map section title to include Benbulben Forest Walk + Mullaghmore
+- **Key Decisions:** Mullaghmore Head slotted between Benbulben (11:30) and Carrowmore (13:00) as a quick scenic stop. Carrowmore drive text updated to reference Mullaghmore.
+- **Next Steps:** None — all requested tasks for this session complete.

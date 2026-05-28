@@ -55,7 +55,7 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .tabs{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:100}
 .tabs-inner{max-width:900px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
 .tabs-inner::-webkit-scrollbar{display:none}
-.tab{flex:1;min-width:0;padding:1rem .5rem;text-align:center;cursor:pointer;font-weight:600;font-size:.82rem;color:#6b7280;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;white-space:nowrap}
+.tab{flex:0 0 auto;padding:1rem .75rem;text-align:center;cursor:pointer;font-weight:600;font-size:.82rem;color:#6b7280;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;white-space:nowrap}
 .tab:hover{color:#0f4c5c;background:#f0fdfa}
 .tab.active{color:#0f4c5c;border-bottom-color:#2a9d8f;background:#f0fdfa}
 
@@ -72,11 +72,11 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .day1 .day-header{background:#ecfdf5;color:#065f46}
 .day2 .day-header{background:#eff6ff;color:#1e40af}
 .day-header span{font-size:1.2rem}
-.stop{display:flex;padding:.85rem 1.2rem;border-top:1px solid #f3f4f6;align-items:flex-start;gap:.8rem;transition:background .15s}
+.stop{display:flex;flex-flow:row wrap;padding:.85rem 1.2rem;border-top:1px solid #f3f4f6;gap:.3rem .6rem;transition:background .15s}
 .stop:hover{background:#fafafa}
 .stop:last-child{border-bottom:none}
-.stop-time{min-width:52px;font-weight:600;font-size:.82rem;color:#6b7280;padding-top:2px;flex-shrink:0}
-.stop-icon{font-size:1rem;min-width:22px;text-align:center;padding-top:3px;flex-shrink:0}
+.stop-time{font-weight:600;font-size:.82rem;color:#6b7280;flex:1 1 100%}
+.stop-icon{font-size:1rem;text-align:center;flex-shrink:0}
 .stop-detail{flex:1;min-width:0}
 .stop-name{font-weight:600;font-size:.92rem;color:#111827}
 .stop-desc{font-size:.8rem;color:#6b7280;margin-top:2px;line-height:1.45}
@@ -92,6 +92,8 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .stop-acts>.act-badge,.act-row{display:flex;align-items:center;gap:6px;width:100%;min-width:0;border-left:3px solid;padding:3px 8px;border-radius:0 4px 4px 0;margin:0}
 .act-row>.act-badge{flex:1;border-left:none;padding:1px 4px}
 .act-book{display:inline-flex;align-items:center;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;border:1px solid;border-radius:6px;padding:2px 10px;text-decoration:none;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.5;color:inherit}
+.gleniff-map{border-radius:8px;overflow:hidden;margin-top:8px;height:210px}
+.gleniff-map-inner{overflow:hidden;height:210px;border-radius:8px}
 a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .yt-link{display:inline-flex;align-items:center;font-size:.6rem;font-weight:700;border-radius:6px;padding:2px 10px;text-decoration:none;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.5;color:#fff;background:#c00;border:1px solid #c00;letter-spacing:.3px}
 .yt-link:hover{background:#8b0000;border-color:#8b0000}
@@ -127,6 +129,25 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .plan-sub{font-size:.78rem;color:#9ca3af}
 .footer{text-align:center;padding:1.5rem;font-size:.78rem;color:#9ca3af}
 
+.ditched{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease}
+.show-ditched .ditched{max-height:5000px;opacity:1}
+.tab.ditched{display:none}
+.show-ditched .tab.ditched{display:inline-block}
+.carousel-card.ditched{display:none;max-height:none}
+.show-ditched .carousel-card.ditched{display:flex;animation:ditchIn .35s ease}
+@keyframes ditchIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.toggle-wrap{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem .2rem;justify-content:center;font-size:.82rem;color:#6b7280;cursor:pointer;user-select:none}
+.toggle-wrap input{display:none}
+.toggle-track{width:36px;height:20px;background:#d1d5db;border-radius:10px;position:relative;transition:background .2s;flex-shrink:0;display:inline-block;vertical-align:middle}
+.toggle-track::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .2s}
+.toggle-wrap input:checked+.toggle-track{background:#2a9d8f}
+.toggle-wrap input:checked+.toggle-track::after{transform:translateX(16px)}
+.fab{position:fixed;bottom:2rem;left:1.5rem;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.25);transition:background .2s,transform .2s, opacity .4s ease;line-height:1}
+
+.fab:hover{background:rgba(0,0,0,.7);transform:scale(1.05)}
+.fab-dropdown{position:fixed;bottom:5rem;left:1.5rem;z-index:998;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:12px;max-height:0;overflow:hidden;transition:max-height .3s ease;white-space:nowrap}
+.fab-dropdown.open{max-height:80px}
+.fab-dropdown .toggle-wrap{padding:.6rem .8rem;color:#fff}
 @media(max-width:700px){
 .carousel-card .content{padding:1.5rem}
 .carousel-card h2{font-size:1.5rem}
@@ -134,7 +155,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .hero-content h1{font-size:1.6rem}
 }
 @media(max-width:600px){
-.stop{flex-wrap:wrap;gap:.4rem}.stop-time,.stop-icon{display:none}#lightbox{padding:1rem}
+.stop{padding:.5rem .8rem;gap:.2rem .5rem}.stop-icon{display:none}#lightbox{padding:1rem}
 .map-section iframe{height:280px}
 .carousel-card .cta{padding:.6rem 1.4rem;font-size:.85rem}
 .carousel-card .content{padding:1.2rem}
@@ -146,10 +167,22 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .cc-dots{bottom:4.5rem}
 .cc-dots span{width:6px;height:6px}
 .hero{min-height:400px}
+.act-row{flex-direction:column;align-items:stretch;gap:4px}
+.gleniff-map,.gleniff-map-inner{height:240px}
+.act-row>.act-badge{white-space:normal}
 }
 </style>
 </head>
 <body>
+
+<div class="fab" id="fabBtn" onclick="toggleSettings()">&#8942;</div>
+<div class="fab-dropdown" id="settingsPanel">
+  <label class="toggle-wrap" style="color:#fff;padding:0;margin:0;display:flex;gap:.5rem;font-size:.8rem">
+    <input type="checkbox" onchange="toggleDitched(this.checked)">
+    <span class="toggle-track" style="background:rgba(255,255,255,.3)"></span>
+    Show ditched plans
+  </label>
+</div>
 
 <!-- ===== HERO SLIDESHOW ===== -->
 <div class="hero">
@@ -158,7 +191,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <div class="hero-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Keem Bay</span></div>
 <div class="hero-content">
 <h1>Ireland Weekend Getaway</h1>
-<p class="sub">Three hand-picked routes &bull; All north of the Dublin-Galway line</p>
+<p class="sub">Dublin &rarr; Sligo Coast &rarr; North Mayo &rarr; Dublin</p>
 <p class="meta">Sat 30 &ndash; Sun 31 May &bull; Max 1.5hr drives</p>
 </div>
 <div class="hero-dots">
@@ -174,41 +207,41 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 
 <div class="carousel-card" data-plan="0">
 <div class="cc-slides">
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Benbulben</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Downpatrick Head</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Keem Bay</span></div>
+</div>
+<div class="content">
+<span class="badge">★ Our Plan</span>
+<h2>Sligo &amp; Mayo Coast</h2>
+<p class="route">Dublin &rarr; Sligo &rarr; Mayo Coast &rarr; Dublin</p>
+<ul class="highlights">
+<li>Benbulben &amp; Yeats country</li>
+<li>Downpatrick Head sea stack</li>
+<li>Keem Bay &mdash; #1 beach</li>
+</ul>
+<button class="cta" onclick="showPlan(0)">View Plan &rarr;</button>
+</div>
+<span class="carousel-count">1 / 1</span>
+<div class="cc-dots"><span class="active"></span><span></span><span></span></div>
+<button class="carousel-arrow-up" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">&#8593;</button>
+<button class="carousel-arrow" onclick="var n=this.closest('.carousel-card').nextElementSibling;if(n&&!(n.classList.contains('ditched')&&!document.body.classList.contains('show-ditched')))n.scrollIntoView({behavior:'smooth'});else document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})">&#8595;</button>
+</div>
+
+<div class="carousel-card ditched" data-plan="1">
+<div class="cc-slides">
 <div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/21923111/pexels-photo-21923111.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Connemara</span></div>
 <div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/18549116/pexels-photo-18549116.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Kylemore Abbey</span></div>
 <div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/30283523/pexels-photo-30283523.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Clifden</span></div>
 </div>
 <div class="content">
-<span class="badge">Plan 1</span>
+<span class="badge">Plan 2</span>
 <h2>Connemara &amp; Mayo</h2>
 <p class="route">Dublin &rarr; Cong &rarr; Kylemore &rarr; Clifden &rarr; Westport</p>
 <ul class="highlights">
 <li>Kylemore Abbey &amp; lake gardens</li>
 <li>Sky Road coastal drive</li>
 <li>Killary Fjord &amp; Keem Bay</li>
-</ul>
-<button class="cta" onclick="showPlan(0)">View Plan &rarr;</button>
-</div>
-<span class="carousel-count">1 / 4</span>
-<div class="cc-dots"><span class="active"></span><span></span><span></span></div>
-<button class="carousel-arrow-up" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">&#8593;</button>
-<button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
-</div>
-
-<div class="carousel-card" data-plan="1">
-<div class="cc-slides">
-<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Strandhill</span></div>
-<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Benbulben</span></div>
-<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Slieve League</span></div>
-</div>
-<div class="content">
-<span class="badge">Plan 2</span>
-<h2>Sligo &amp; Donegal</h2>
-<p class="route">Dublin &rarr; Strandhill &rarr; Sligo &rarr; Donegal &rarr; Slieve League</p>
-<ul class="highlights">
-<li>Benbulben &amp; Yeats country</li>
-<li>5,000-yr-old Carrowmore tombs</li>
-<li>Europe's highest sea cliffs</li>
 </ul>
 <button class="cta" onclick="showPlan(1)">View Plan &rarr;</button>
 </div>
@@ -218,20 +251,20 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
-<div class="carousel-card" data-plan="2">
+<div class="carousel-card ditched" data-plan="2">
 <div class="cc-slides">
-<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Coast</span></div>
-<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Keem Bay</span></div>
-<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/5765122/pexels-photo-5765122.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Cliffs</span></div>
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Strandhill</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Benbulben</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Slieve League</span></div>
 </div>
 <div class="content">
 <span class="badge">Plan 3</span>
-<h2>Achill Island &amp; Mayo</h2>
-<p class="route">Dublin &rarr; Ballina &rarr; Ceide Fields &rarr; Achill &rarr; Keem Bay</p>
+<h2>Sligo &amp; Donegal</h2>
+<p class="route">Dublin &rarr; Strandhill &rarr; Sligo &rarr; Donegal &rarr; Slieve League</p>
 <ul class="highlights">
-<li>Ceide Fields Neolithic site</li>
-<li>Downpatrick Head sea stack</li>
-<li>Keem Bay &mdash; #1 beach</li>
+<li>Benbulben &amp; Yeats country</li>
+<li>5,000-yr-old Carrowmore tombs</li>
+<li>Europe's highest sea cliffs</li>
 </ul>
 <button class="cta" onclick="showPlan(2)">View Plan &rarr;</button>
 </div>
@@ -241,20 +274,20 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <button class="carousel-arrow" onclick="this.closest('.carousel-card').nextElementSibling.scrollIntoView({behavior:'smooth'})">&#8595;</button>
 </div>
 
-<div class="carousel-card" data-plan="3">
+<div class="carousel-card ditched" data-plan="3">
 <div class="cc-slides">
-<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Benbulben</span></div>
-<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Downpatrick Head</span></div>
+<div class="cc-slide active" style="background-image:url(https://images.pexels.com/photos/29579005/pexels-photo-29579005.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Coast</span></div>
 <div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Keem Bay</span></div>
+<div class="cc-slide" style="background-image:url(https://images.pexels.com/photos/5765122/pexels-photo-5765122.jpeg?auto=compress&cs=tinysrgb&w=1600)"><span class="cc-place">&#128205; Achill Cliffs</span></div>
 </div>
 <div class="content">
 <span class="badge">Plan 4</span>
-<h2>Best of All</h2>
-<p class="route">Dublin &rarr; Sligo &rarr; Donegal &rarr; Mayo &rarr; Dublin</p>
+<h2>Achill Island &amp; Mayo</h2>
+<p class="route">Dublin &rarr; Ballina &rarr; Ceide Fields &rarr; Achill &rarr; Keem Bay</p>
 <ul class="highlights">
-<li>Benbulben &amp; Yeats country</li>
-<li>Europe's highest sea cliffs</li>
-<li>Downpatrick Head &amp; Keem Bay</li>
+<li>Ceide Fields Neolithic site</li>
+<li>Downpatrick Head sea stack</li>
+<li>Keem Bay &mdash; #1 beach</li>
 </ul>
 <button class="cta" onclick="showPlan(3)">View Plan &rarr;</button>
 </div>
@@ -269,17 +302,17 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <!-- ===== TABS ===== -->
 <div class="tabs">
 <div class="tabs-inner">
-<div class="tab active" onclick="showPlan(0)">Connemara &amp; Mayo</div>
-<div class="tab" onclick="showPlan(1)">Sligo &amp; Donegal</div>
-<div class="tab" onclick="showPlan(2)">Achill Island &amp; Mayo</div>
-<div class="tab" onclick="showPlan(3)">Best of All</div>
+<div class="tab active" onclick="showPlan(0)">Active Plan</div>
+<div class="tab ditched" onclick="showPlan(1)">Connemara &amp; Mayo</div>
+<div class="tab ditched" onclick="showPlan(2)">Sligo &amp; Donegal</div>
+<div class="tab ditched" onclick="showPlan(3)">Achill Island &amp; Mayo</div>
 </div>
 </div>
 
 <div class="container">
 
 <!-- ========== PLAN 1: CONNEMARA & MAYO ========== -->
-<div class="plan active">
+<div class="plan ditched">
 <p class="plan-title">Plan 1 &bull; Sat 30 &ndash; Sun 31 May</p>
 <p class="plan-sub">Dublin &rarr; Connemara &rarr; Mayo &rarr; Dublin &bull; ~400km total</p>
 
@@ -392,8 +425,8 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 
 <div class="map-section">
 <div class="map-h">&#128205; Dublin &rarr; Strandhill &rarr; Benbulben &rarr; Sligo &rarr; Donegal &rarr; Slieve League &rarr; Dublin</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+to:Sligo+Town+to:Donegal+Town+to:Killybegs&dirflg=d&output=embed" allowfullscreen></iframe>
-<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben/Sligo+Town/Donegal+Town/Killybegs" target="_blank">Open in Google Maps</a>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+Co+Sligo+to:Sligo+Town+to:Donegal+Town+to:Killybegs&dirflg=d&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben+Co+Sligo/Sligo+Town/Donegal+Town/Killybegs" target="_blank">Open in Google Maps</a>
 </div>
 
 <div class="day day1">
@@ -410,7 +443,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 </div>
 <div class="stop">
 <div class="stop-time">11:00</div><div class="stop-icon">&#127759;</div>
-<div class="stop-detail"><div class="stop-name">Benbulben Viewpoint <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Iconic flat-topped mountain, inspiration for Yeats &amp; Heaney. Photo stop at the lay-by on N15.</div><div class="stop-drive">15 min from Strandhill</div>
+<div class="stop-detail"><div class="stop-name">Benbulben Forest Walk <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Benbulben Forest Walk &mdash; 5.5&thinsp;km easy loop, pram-friendly, starts at the base. Coffee &amp; scones at Drumcliffe Tea House nearby.</div><div class="stop-drive">15 min from Strandhill</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Benbulben" loading="lazy"><img src="https://live.staticflickr.com/65535/55243047709_24482ffca1_b.jpg" alt="Ben Bulben" loading="lazy"><img src="https://live.staticflickr.com/65535/55025823802_0fb2149d19_b.jpg" alt="Snow Sunset on Benbulben" loading="lazy"></div></div>
 </div>
 <div class="stop">
@@ -609,96 +642,105 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 </div>
 
 <!-- ========== PLAN 4: BEST OF ALL ========== -->
-<div class="plan">
-<p class="plan-title">Plan 4 &bull; Sat 30 &ndash; Sun 31 May</p>
-<p class="plan-sub">Dublin &rarr; Sligo &rarr; Donegal &rarr; Mayo &rarr; Dublin &bull; ~650km total</p>
+<div class="plan active">
+<p class="plan-title">Active Plan &bull; Sat 30 &ndash; Sun 31 May</p>
+<p class="plan-sub">Dublin &rarr; Sligo &rarr; Mayo Coast &rarr; Dublin &bull; ~550km total</p>
 
 <div class="map-section">
-<div class="map-h">&#128205; Day 1 &mdash; Dublin &rarr; Strandhill &rarr; Benbulben &rarr; Sligo Town</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Strandhill+to:Benbulben+to:Sligo+Town&dirflg=d&output=embed" allowfullscreen></iframe>
-<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Strandhill/Benbulben/Sligo+Town" target="_blank">Open in Google Maps</a>
+<div class="map-h">&#128205; Day 1 &mdash; Dublin &rarr; Mullingar &rarr; Gleniff Horseshoe &rarr; Mullaghmore &rarr; Sligo &rarr; Strandhill &rarr; Ballina</div>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Dublin&daddr=Mullingar+to:Gleniff+Barytes+Mill+Site+to:Mullaghmore+Head+to:Sligo+Town+to:Strandhill+to:Ballina+Co+Mayo&dirflg=d&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Dublin/Mullingar/Gleniff+Barytes+Mill+Site+Co+Sligo/Mullaghmore+Head/Sligo+Town/Strandhill/Ballina+Co+Mayo" target="_blank">Open in Google Maps</a>
 </div>
 
 <div class="map-section">
-<div class="map-h">&#128205; Day 2 &mdash; Sligo &rarr; Donegal &rarr; Downpatrick &rarr; Achill &rarr; Dublin</div>
-<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Sligo&daddr=Donegal+Town+to:Killybegs+to:Downpatrick+Head+to:Achill+Island+to:Keem+Bay&dirflg=d&output=embed" allowfullscreen></iframe>
-<a class="map-link" href="https://www.google.com/maps/dir/Sligo/Donegal+Town/Killybegs/Downpatrick+Head/Achill+Island/Keem+Bay" target="_blank">Open in Google Maps</a>
+<div class="map-h">&#128205; Day 2 &mdash; Ballina &rarr; Downpatrick Head &rarr; Keem Bay &rarr; Castlebar &rarr; Dublin</div>
+<iframe loading="lazy" src="https://maps.google.com/maps?saddr=Ballina+Co+Mayo&daddr=Downpatrick+Head+to:Keem+Bay+to:Castlebar+to:Dublin&dirflg=d&output=embed" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/dir/Ballina+Co+Mayo/Downpatrick+Head/Keem+Bay/Castlebar/Dublin" target="_blank">Open in Google Maps</a>
 </div>
 
 <div class="day day1">
-<div class="day-header"><span>&#127754;</span> Day 1 &mdash; Dublin to Sligo</div>
+<div class="day-header"><span>&#127754;</span> Day 1 &mdash; Dublin to Ballina</div>
 <div class="stop">
 <div class="stop-time">07:00</div><div class="stop-icon">&#128663;</div>
 <div class="stop-detail"><div class="stop-name">Depart Dublin</div><div class="stop-desc">M4/N4 west (2.5hr). Pack snacks, baby toys, charged devices.</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">09:30</div><div class="stop-icon">&#9973;</div>
-<div class="stop-detail"><div class="stop-name">Strandhill Beach</div><div class="stop-desc">Surf beach with dunes. Sea air, rock pools, great coffee at Strandhill Market Kitchen. Pram-friendly promenade.</div><div class="stop-drive">5 min off N4</div>
-<div class="stop-imgs"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"><img src="https://live.staticflickr.com/65535/54660464313_e71a8072f3_b.jpg" alt="Strandhill beach" loading="lazy"><img src="https://live.staticflickr.com/65535/54010868461_65c06399ea_b.jpg" alt="Strandhill surfing" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Strandhill promenade to the dunes</span><span class="act-badge act-baby">👶 1hr surf lesson — all gear provided</span><div class="act-row"><span class="act-badge act-couple">👫 Sligo Bay guided kayak tour</span><a class="act-book" href="https://sligokayaktours.com/" target="_blank">Book</a></div></div></div>
+<div class="stop-time">08:30</div><div class="stop-icon">&#9749;</div>
+<div class="stop-detail"><div class="stop-name">Quick stop &mdash; Mullingar</div><div class="stop-desc">Coffee at Applegreen service station. Baby nappy change &amp; leg stretch. 15 min.</div><div class="stop-drive">1.5hr from Dublin</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">11:00</div><div class="stop-icon">&#127759;</div>
-<div class="stop-detail"><div class="stop-name">Benbulben Viewpoint <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Iconic flat-topped mountain. Photo stop at the lay-by on N15.</div><div class="stop-drive">15 min from Strandhill</div>
-<div class="stop-imgs"><img src="https://images.pexels.com/photos/17938479/pexels-photo-17938479.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Benbulben" loading="lazy"><img src="https://live.staticflickr.com/65535/55243047709_24482ffca1_b.jpg" alt="Ben Bulben" loading="lazy"><img src="https://live.staticflickr.com/65535/55025823802_0fb2149d19_b.jpg" alt="Benbulben snow" loading="lazy"></div></div>
+<div class="stop-time">11:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Gleniff Horseshoe View Point <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Scenic horseshoe-shaped valley drive. Start at <strong>Gleniff Barytes Mill Site</strong> and follow the loop — breathtaking valley views, photo stops, easy paved road.</div><div class="stop-drive">25 min from Mullingar</div>
+<div class="stop-imgs"><img src="https://sligowalks.ie/wp-content/uploads/2024/10/Gleniff-Featured.jpg" alt="Gleniff Horseshoe" loading="lazy"><img src="https://sligowalks.ie/wp-content/uploads/2024/10/Gleniff-Horseshoe-5.jpg" alt="Gleniff Horseshoe valley" loading="lazy"></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><div class="act-row"><span class="act-badge act-baby">👶 Scenic drive loop — 30 min panoramic loop, baby-friendly</span><a class="act-book" href="https://www.theirishroadtrip.com/wp-content/uploads/2024/04/gleniff-horseshoe-drive-map-1.jpg" target="_blank">Route Map</a></div><div class="gleniff-map"><div class="gleniff-map-inner"><iframe src="https://www.google.com/maps/d/embed?mid=1veIDZVF7enbWbq3fig1cjlrNEp3lou0&ehbc=2E312F" width="100%" height="340" style="border:0;margin-top:-65px" allowfullscreen></iframe></div></div></div></div>
 </div>
 <div class="stop">
-<div class="stop-time">12:00</div><div class="stop-icon">&#127963;</div>
-<div class="stop-detail"><div class="stop-name">Carrowmore Megalithic Cemetery</div><div class="stop-desc">One of Europe's oldest megalithic sites. 30+ tombs, flat pathways. Visitor centre. Allow 45 min.</div><div class="stop-drive">15 min from Benbulben</div>
-<div class="stop-imgs"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-1.jpg" alt="Carrowmore" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-Listoghil-Chamber.jpg" alt="Carrowmore chamber" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Carrowmore-Circle.jpg" alt="Carrowmore circle" loading="lazy"></div></div>
+<div class="stop-time">12:30</div><div class="stop-icon">&#127987;</div>
+<div class="stop-detail"><div class="stop-name">Mullaghmore Head <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Classiebawn Castle on the headland. Stunning coastal views, flat promenade walk. Quick 20-min photo stop.</div><div class="stop-drive">20 min from Gleniff</div>
+<div class="stop-imgs"><img src="https://www.nordicvisitor.com/images/1/ireland-uk/mullaghmore-head.jpg" alt="Mullaghmore Head" loading="lazy"><img src="https://sligowalks.ie/wp-content/uploads/2024/10/Mullaghmore-Coastal-Walk-1-768x576.jpg" alt="Mullaghmore coastal walk" loading="lazy"><img src="https://sligowalks.ie/wp-content/uploads/2024/10/Mullaghmore-Coastal-Walk-2-768x576.jpg" alt="Mullaghmore coastal path" loading="lazy"><img src="https://assets-eu-01.kc-usercontent.com/aa24ba70-9a12-01ae-259b-7ef588a0b2ef/84b6aeb2-adc2-44aa-9c43-87d7a8366e28/header-mullaghmore-head-classiebawn-castle-county-sligo-.jpg?w=1332&q=66&h=750&fit=crop&fm=webp" alt="Classiebawn Castle" loading="lazy"></div></div>
 </div>
 <div class="stop">
-<div class="stop-time">13:00</div><div class="stop-icon">&#127860;</div>
-<div class="stop-detail"><div class="stop-name">Lunch in Sligo Town <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Flip Side or Katie's Kitchen. Excellent coffee, sandwiches, salads.</div><div class="stop-drive">10 min from Carrowmore</div></div>
+<div class="stop-time">13:30</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Sligo Town <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Flip Side or Katie's Kitchen. Excellent coffee, sandwiches, salads.</div><div class="stop-drive">25 min from Mullaghmore</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">14:30</div><div class="stop-icon">&#128694;</div>
+<div class="stop-time">14:00</div><div class="stop-icon">&#128694;</div>
 <div class="stop-detail"><div class="stop-name">Sligo Town Walk</div><div class="stop-desc">Sligo Abbey (13th-century ruins), riverside walk along the Garavogue, Yeats Memorial Building.</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/34443645/pexels-photo-34443645.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sligo Town" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Sligo-Abbey.jpg" alt="Sligo Abbey" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Sligo-Abbey-1.jpg" alt="Sligo Abbey cloister" loading="lazy"></div>
 <div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Garavogue River walk via Hyde Bridge</span></div></div>
 </div>
 <div class="stop">
-<div class="stop-time">16:30</div><div class="stop-icon">&#127968;</div>
-<div class="stop-detail"><div class="stop-name">Check in &mdash; Mountain View, Grange Beg</div><div class="stop-desc">3-bed holiday home near Benbulben. Sleeps 5. Peaceful countryside setting.</div><div class="stop-drive"><a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-6" target="_blank">&#128279; View &amp; Book (Selfcater)</a></div></div>
+<div class="stop-time">15:00</div><div class="stop-icon">&#9973;</div>
+<div class="stop-detail"><div class="stop-name">Strandhill Beach</div><div class="stop-desc">Surf beach with dunes. Sea air, rock pools, great coffee at Strandhill Market Kitchen. Pram-friendly promenade.</div><div class="stop-drive">5 min from Sligo Town</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/6974660/pexels-photo-6974660.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strandhill waves" loading="lazy"><img src="https://live.staticflickr.com/65535/54660464313_e71a8072f3_b.jpg" alt="Strandhill beach" loading="lazy"><img src="https://live.staticflickr.com/65535/54010868461_65c06399ea_b.jpg" alt="Strandhill surfing" loading="lazy"></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Strandhill promenade to the dunes</span><span class="act-badge act-baby">👶 1hr surf lesson — all gear provided</span><div class="act-row"><span class="act-badge act-couple">👫 Sligo Bay guided kayak tour</span><a class="act-book" href="https://sligokayaktours.com/" target="_blank">Book</a></div></div></div>
+</div>
+<div class="stop">
+<div class="stop-time">16:00</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Drive to Ballina</div><div class="stop-desc">Via N17 south. Scenic countryside, River Moy valley.</div><div class="stop-drive">40 min from Strandhill</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">17:00</div><div class="stop-icon">&#127968;</div>
+<div class="stop-detail"><div class="stop-name">Check in &mdash; Cat's House, Ballina</div><div class="stop-desc">68 Moy Heights. Top-rated Airbnb guest favourite. Sleeps 5.</div><div class="stop-drive"><a href="https://www.airbnb.ie/rooms/874593542920789490" target="_blank">&#128279; View on Airbnb</a></div></div>
 </div>
 </div>
 
 <div class="day day2">
-<div class="day-header"><span>&#127754;</span> Day 2 &mdash; Donegal to Mayo Coast</div>
+<div class="day-header"><span>&#127754;</span> Day 2 &mdash; Mayo Coast &amp; Return</div>
 <div class="stop">
 <div class="stop-time">08:00</div><div class="stop-icon">&#9749;</div>
-<div class="stop-detail"><div class="stop-name">Breakfast at The Thatched Cottage, Grange <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Full Irish, fresh soda bread.</div></div>
+<div class="stop-detail"><div class="stop-name">Breakfast at The Merry Monk, Ballina <span class="cafe-tag">Cafe</span></div><div class="stop-desc">Full Irish, fresh bread. Right on the River Moy.</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">10:00</div><div class="stop-icon">&#127963;</div>
-<div class="stop-detail"><div class="stop-name">Donegal Castle <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">16th-century castle in town centre. Guided tour. The Diamond for coffee.</div><div class="stop-drive">1hr from Grange</div>
-<div class="stop-imgs"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle.jpg" alt="Donegal Castle" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle-interior.jpg" alt="Donegal Castle interior" loading="lazy"><img src="https://heritageireland.ie/assets/uploads/2020/03/Donegal-Castle-roof.jpg" alt="Donegal Castle roof" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><div class="act-row"><span class="act-badge act-couple">👫 Donegal Castle guided tour</span><a class="act-book" href="https://heritageireland.ie/places-to-visit/donegal-castle/" target="_blank">Book</a></div></div></div>
+<div class="stop-time">09:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Drive to Downpatrick Head</div><div class="stop-desc">N59 west along the Wild Atlantic Way. Stunning coastal scenery.</div><div class="stop-drive">1hr from Ballina</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">11:30</div><div class="stop-icon">&#127860;</div>
-<div class="stop-detail"><div class="stop-name">Lunch in Carrick <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Rusty Mackerel or The Blueberry Cafe. Fresh seafood, homemade soups.</div><div class="stop-drive">40 min from Donegal Town</div></div>
-</div>
-<div class="stop">
-<div class="stop-time">12:30</div><div class="stop-icon">&#128247;</div>
-<div class="stop-detail"><div class="stop-name">Slieve League Cliffs <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Europe's highest sea cliffs (almost 3x Moher!). Bunglass viewpoint, short walk from car park.</div><div class="stop-drive">10 min from Carrick</div>
-<div class="stop-imgs"><img src="https://images.pexels.com/photos/15934813/pexels-photo-15934813.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Slieve League" loading="lazy"><img src="https://live.staticflickr.com/65535/54341635735_c5a9661576_b.jpg" alt="Slieve League cliffs" loading="lazy"><img src="https://live.staticflickr.com/65535/55290367257_7cf02d222a_b.jpg" alt="Sliabh Liag" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Bunglass viewpoint — 50m from car park</span><span class="act-badge act-couple">👫 Cliff path from Bunglass to One Man's Pass</span></div></div>
-</div>
-<div class="stop">
-<div class="stop-time">14:30</div><div class="stop-icon">&#127987;</div>
-<div class="stop-detail"><div class="stop-name">Downpatrick Head <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Dramatic sea stack &amp; blowhole. WW2 lookout, puffin colony in summer. Free.</div><div class="stop-drive">2hr from Slieve League</div>
+<div class="stop-time">11:00</div><div class="stop-icon">&#127987;</div>
+<div class="stop-detail"><div class="stop-name">Downpatrick Head <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Dramatic sea stack &amp; blowhole. WW2 lookout, puffin colony in summer. Free.</div>
 <div class="stop-imgs"><img src="https://images.pexels.com/photos/1686024/pexels-photo-1686024.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick Head" loading="lazy"><img src="https://images.pexels.com/photos/12530564/pexels-photo-12530564.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Downpatrick cliffs" loading="lazy"></div></div>
 </div>
 <div class="stop">
-<div class="stop-time">16:30</div><div class="stop-icon">&#9973;</div>
-<div class="stop-detail"><div class="stop-name">Keem Bay, Achill Island <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. Paddle on calm days.</div><div class="stop-drive">1.5hr from Downpatrick</div>
-<div class="stop-imgs"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy"></div>
-<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Keem Bay shoreline walk from car park</span><div class="act-row"><span class="act-badge act-couple">👫 Kayaking &amp; SUP — gear rental on beach</span><a class="act-book" href="https://achillsurf.com/sea-kayaking/" target="_blank">Book</a></div></div></div>
+<div class="stop-time">12:30</div><div class="stop-icon">&#127860;</div>
+<div class="stop-detail"><div class="stop-name">Lunch in Bangor Erris <span class="cafe-tag">Cafe</span></div><div class="stop-desc">The Dressing Room Cafe — carvery, salad bar, homemade desserts. Fresh local food.</div><div class="stop-drive">20 min from Downpatrick</div></div>
 </div>
 <div class="stop">
-<div class="stop-time">18:30</div><div class="stop-icon">&#128663;</div>
-<div class="stop-detail"><div class="stop-name">Return to Dublin</div><div class="stop-desc">Via N5/N4/M4 (3.5hr). Home ~22:00.</div></div>
+<div class="stop-time">14:00</div><div class="stop-icon">&#9973;</div>
+<div class="stop-detail"><div class="stop-name">Keem Bay, Achill Island <span class="must-see">&#9733; Must-See</span></div><div class="stop-desc">Stunning Blue Flag beach in a horseshoe bay. Crystal-clear water, white sand. Paddle on calm days.</div><div class="stop-drive">1.5hr from Bangor Erris</div>
+<div class="stop-imgs"><img src="https://images.pexels.com/photos/9772544/pexels-photo-9772544.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay" loading="lazy"><img src="https://images.pexels.com/photos/13050819/pexels-photo-13050819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Keem Bay beach" loading="lazy"></div>
+<div class="stop-acts"><div class="acts-heading">🎯 Activities</div><span class="act-badge act-baby">👶 Keem Bay shoreline walk from car park</span><div class="act-row"><span class="act-badge act-couple">👫 Kayaking &amp; SUP — gear rental on beach</span><a class="act-book" href="https://achillsurf.com/sea-kayaking/" target="_blank">Book</a></div></div> </div>
+</div>
+<div class="stop">
+<div class="stop-time">16:00</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Leave Achill</div><div class="stop-desc">N59 east towards Westport. Scenic drive along Clew Bay.</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">17:30</div><div class="stop-icon">&#9749;</div>
+<div class="stop-detail"><div class="stop-name">Rest stop — Castlebar</div><div class="stop-desc">Coffee &amp; baby break at Circle K or Castlebar town centre. 15 min.</div><div class="stop-drive">1.5hr from Achill</div></div>
+</div>
+<div class="stop">
+<div class="stop-time">19:30</div><div class="stop-icon">&#128663;</div>
+<div class="stop-detail"><div class="stop-name">Arrive Dublin</div><div class="stop-desc">Via N5/N4/M4 (1.5hr from Castlebar). Home by 19:45.</div></div>
 </div>
 </div>
 
@@ -708,26 +750,26 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 <li>&#127793; Strandhill Market Kitchen &mdash; artisan coffee, burritos, pastries by the beach</li>
 <li>&#127793; Flip Side, Sligo Town &mdash; specialty coffee, brunch, toasties, baby-friendly</li>
 <li>&#127793; Katie's Kitchen, Sligo Town &mdash; homemade soups, sandwiches, cakes</li>
-<li>&#127793; The Blueberry Cafe, Carrick &mdash; fresh scones, soup near Slieve League</li>
-<li>&#127860; The Rusty Mackerel, Carrick &mdash; award-winning seafood</li>
-<li>&#127860; Talbot's Bar, Belmullet &mdash; pub food with sea views</li>
+<li>&#127793; The Merry Monk, Ballina &mdash; Full Irish, sandwiches, riverside setting &mdash; great for breakfast</li>
+<li>&#127860; Belleek Castle Restaurant, Ballina &mdash; award-winning evening dinner in a castle, baby-friendly early sittings</li>
+<li>&#127793; The Dressing Room Cafe, Bangor Erris &mdash; carvery, salad bar, homemade desserts</li>
+<li>&#127793; The Achill Bakery Cafe, Keel &mdash; artisan bakery, great coffee</li>
 </ul>
 </div>
 
 <div class="info-box">
 <h3>Accommodation</h3>
 <ul>
-<li><a href="https://selfcater.com/rentals/ireland/sligo/grange-beg/mountain-view-6" target="_blank">Mountain View, Grange Beg</a> &mdash; 3-bed near Benbulben, sleeps 5</li>
+<li><a href="https://www.airbnb.ie/rooms/874593542920789490" target="_blank">Cat's House, 68 Moy Heights, Ballina (Airbnb)</a> &mdash; top-rated guest favourite, sleeps 5, Co. Mayo</li>
 </ul>
 </div>
 
 <div class="info-box">
 <h3>Tips</h3>
 <ul>
-<li>Long day 2 — start early, expect late return ~22:00</li>
-<li>Slieve League is free and less crowded than Moher</li>
+<li>More relaxed day 2 — home by early evening ~19:30</li>
 <li>Downpatrick Head has a blowhole that sprays on windy days</li>
-<li>Keem Bay is Ireland's most photographed beach — visit late for golden light</li>
+<li>Keem Bay is Ireland's most photographed beach — visit on the way back for golden light</li>
 <li>All stops in Republic of Ireland — no passport needed</li>
 </ul>
 </div>
@@ -746,7 +788,10 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 </div>
 
 <script>
-function showPlan(i){document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===i));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.container').scrollIntoView({behavior:'smooth'})}
+function showPlan(i){var m=[3,0,1,2][i];document.querySelectorAll('.plan').forEach((p,idx)=>p.classList.toggle('active',idx===m));document.querySelectorAll('.tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));document.querySelector('.container').scrollIntoView({behavior:'smooth'})}
+function toggleDitched(on){document.body.classList.toggle('show-ditched',on);if(!on){document.querySelectorAll('.plan').forEach(function(p,i){p.classList.toggle('active',i===3)});document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',i===0)})}}
+var fabTimer;function toggleSettings(){var p=document.getElementById('settingsPanel');p.classList.toggle('open');clearTimeout(fabTimer);if(p.classList.contains('open'))fabTimer=setTimeout(function(){p.classList.remove('open')},3500)}
+fabTimer=setTimeout(function(){document.getElementById('settingsPanel').classList.remove('open')},3500);
 // Lightbox gallery
 var lbImages=[],lbIdx=0;
 document.querySelectorAll('.stop-imgs img, .act-imgs img').forEach(function(img){img.addEventListener('click',function(e){e.stopPropagation();var p=img.closest('.stop-imgs,.act-imgs');lbImages=[];Array.from(p.querySelectorAll('img')).forEach(function(s){if(lbImages.indexOf(s.src)===-1)lbImages.push(s.src)});lbIdx=lbImages.indexOf(this.src);openLightbox(this.src)})});
