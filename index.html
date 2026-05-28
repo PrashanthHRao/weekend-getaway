@@ -72,16 +72,16 @@ body{scroll-snap-type:y proximity;overflow-y:scroll}
 .day1 .day-header{background:#ecfdf5;color:#065f46}
 .day2 .day-header{background:#eff6ff;color:#1e40af}
 .day-header span{font-size:1.2rem}
-.stop{display:flex;flex-flow:row wrap;padding:.85rem 1.2rem;border-top:1px solid #f3f4f6;gap:.3rem .6rem;transition:background .15s}
+.stop{display:flex;flex-flow:row wrap;padding:.85rem 1.2rem;border-top:1px solid #f3f4f6;gap:0;transition:background .15s;position:relative}
 .stop:hover{background:#fafafa}
 .stop:last-child{border-bottom:none}
-.stop-time{font-weight:600;font-size:.82rem;color:#6b7280;flex:1 1 100%}
-.stop-icon{font-size:1rem;text-align:center;flex-shrink:0}
-.stop-detail{flex:1;min-width:0}
+.stop-time{font-weight:600;font-size:.82rem;color:#6b7280;flex:1 1 100%;margin-bottom:.3rem}
+.stop-icon{position:absolute;left:1.2rem;top:2.2rem;font-size:1rem}
+.stop-detail{flex:1;min-width:0;padding:0 1.6rem}
 .stop-name{font-weight:600;font-size:.92rem;color:#111827}
 .stop-desc{font-size:.8rem;color:#6b7280;margin-top:2px;line-height:1.45}
 .stop-drive{font-size:.72rem;color:#9ca3af;margin-top:2px;font-style:italic}
-.stop-acts{display:flex;flex-direction:column;gap:2px;min-width:0;background:#f0faf5;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px 8px;margin:6px 8px 0}
+.stop-acts{display:flex;flex-direction:column;gap:2px;min-width:0;background:#f0faf5;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px 8px;margin:6px 0 0}
 .acts-heading{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#16a34a;width:100%;margin-bottom:2px}
 .act-imgs{display:flex;gap:4px;overflow-x:auto;touch-action:pan-x;overscroll-behavior-x:contain;will-change:scroll-position;margin-top:3px;padding-bottom:2px;width:100%}
 .act-imgs img{flex:0 0 auto;width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:zoom-in}
@@ -155,7 +155,7 @@ a.act-book:hover{background:#1e40af;color:#fff;border-color:#1e40af}
 .hero-content h1{font-size:1.6rem}
 }
 @media(max-width:600px){
-.stop{padding:.5rem .8rem;gap:.2rem .5rem}.stop-icon{display:none}#lightbox{padding:1rem}
+.stop{padding:.5rem .8rem}.stop-icon{display:none}#lightbox{padding:1rem}
 .map-section iframe{height:280px}
 .carousel-card .cta{padding:.6rem 1.4rem;font-size:.85rem}
 .carousel-card .content{padding:1.2rem}
